@@ -1,0 +1,7 @@
+rootProject.name = 'seedm'
+
+include 'seedm-web'
+include 'seedm-service'
+include 'seedm-repository'
+include 'seedm-entities'
+

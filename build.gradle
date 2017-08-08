@@ -1,0 +1,172 @@
+/**
+ * 配置根项目及所有子项目
+ */
+allprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    task createJavaProject << {
+        sourceSets*.java.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+    }
+
+    task createThriftProject << {
+        sourceSets*.thrift.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+    }
+
+    task createThriftJavaProject << {
+        sourceSets*.thrift-java.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+    }
+}
+
+/**
+ * 配置所有子项目（不包括根项目）
+ */
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    version = '1.0.0'
+
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    //定义Project的属性，此处为使用ext闭包方式定义
+    //也可以通过命令行gradle -P [properties="values"] [taskName]，在命令行制定Project属性的值
+    ext {
+        //SpringFramework
+        springFrameworkVersion = '4.3.10.RELEASE'
+
+        //SpringBoot
+        springBootStarterWeb = '1.5.6.RELEASE'
+
+        //Mybatis
+        mybatisVersion = '3.4.4'
+
+        //MybatisSpring
+        mybatisSpringVersion = '1.3.1'
+
+        /* Apache */
+        //CommonsLang
+        commonsLangVersion = '3.6'
+
+        //CommonsCollections4
+        commonsCollections4Version = '4.1'
+
+        //CommonsIO
+        commonsIOVersion = '2.5'
+
+        //CommonsCodec
+        commonsCodecVersion = '1.10'
+
+        //HttpComponentsClient
+        httpComponentsClientVersion = '4.5.3'
+
+        //CXF
+        cxfVersion = '3.1.12'
+
+        //ActiveMQ
+        activemqVersion = '5.15.0'
+
+        //Shiro
+        shiroVersion = '1.3.2'
+
+        //Thrift
+        thriftVersion = '0.10.0'
+
+        /* DS */
+        //Tomcat
+        tomcatJdbcVersion = '8.5.19'
+
+        //Druid
+        druidVersion = '1.1.2'
+
+        //atomikos
+        atomikosVersion = '4.0.4'
+
+        //JTA
+        jtaVersion = '1.1'
+
+        /* DB */
+        //MysqlConnectorJava
+        mysqlConnectorJavaVersion = '6.0.6'
+
+        //MariaDBJavaClient
+        mariaDBJavaClientVersion = '2.1.0'
+
+        //MongoJavaDrive
+        mongoJavaDriveVersion = '3.5.0'
+
+        //JRedis
+        jRedisVersion = '2.9.0'
+        //MemcachedJavaClient
+        memcachedJavaClientVersion = '3.0.2'
+
+        /* Log */
+        //Logback
+        logbackVersion = '1.2.3'
+
+        //LogbackExtSpring
+        logbackExtSpringVersion = '0.1.4'
+
+        //Log4j
+        log4jVersion = '2.8.2'
+
+        //Slf4j
+        slf4jVersion = '1.7.25'
+
+        /* JSON */
+        //jackson
+        jacksonVersion = '2.9.0'
+
+        //Cglib
+        cglibVersion = '3.2.5'
+
+        //Aspectj
+        aspectjVersion = '1.8.10'
+
+        //RabbitMQ
+
+        //AmqpClientVersion
+        amqpClientVersion = '4.2.0'
+
+        //JMS
+        jmsVersion = '1.1'
+
+        //Servlet
+        servletApiVersion = '3.1.0'
+
+        //JSTL
+        jstlVersion = '1.2'
+
+        //Junit
+        junitVersion = '4.12'
+    }
+
+    dependencies {
+
+        compile (
+                "org.apache.logging.log4j:log4j-api:$log4jVersion",
+                "org.apache.logging.log4j:log4j-core:$log4jVersion",
+                "org.apache.logging.log4j:log4j-web:$log4jVersion",
+                "org.slf4j:slf4j-api:$slf4jVersion"
+        )
+
+        testCompile (
+                "junit:junit:$junitVersion",
+                "org.springframework:spring-test:$springFrameworkVersion"
+        )
+
+        compile fileTree(dir: 'lib', include: ['*.jar'])
+    }
+}
+
+configure(allprojects.findAll { it.name.endsWith('web') }) {
+    apply plugin: 'war'
+}
