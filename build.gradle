@@ -139,6 +139,9 @@ subprojects {
         //JMS
         jmsVersion = '1.1'
 
+        //JetbrickTemplate
+        jetbrickTemplateVersion = '2.1.2'
+
         //Servlet
         servletApiVersion = '3.1.0'
 
