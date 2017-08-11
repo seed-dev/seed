@@ -1,7 +1,9 @@
 import com.github.pagehelper.PageHelper;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.AccountVO;
+import com.github.toolkit.core.CodecKit;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,20 @@ public class AccountTest {
     @Autowired
     private IAccountMapper accountMapper;
 
+    private static CodecKit codecKit;
+
+    @BeforeClass
+    public static void beforClass() {
+        codecKit = new CodecKit();
+    }
+
     @Test
     public void testInsert() {
         System.out.println(this.accountMapper);
 //        AccountVO accountVO = new AccountVO();
 //        accountVO.setId(UUID.randomUUID().toString());
 //        accountVO.setName("超级管理员");
-//        accountVO.setPassword("666666");
+//        accountVO.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
 //        accountVO.setBirthday(new Date());
 //        accountVO.setIdcardNo("8888888888888888");
 //        accountVO.setUserId(String.valueOf(new Random().nextInt(10)));
@@ -35,13 +44,13 @@ public class AccountTest {
 
         AccountVO accountVO = new AccountVO();
         accountVO.setId(UUID.randomUUID().toString());
-        accountVO.setName("陈志恒");
-        accountVO.setPassword("hh*963.-+");
+        accountVO.setName("印度阿三");
+        accountVO.setPassword(codecKit.hex("ss*963.-+".getBytes(), CodecKit.ALGORITHMS_MD5));
         accountVO.setBirthday(new Date());
-        accountVO.setIdcardNo("510112198403236016");
+        accountVO.setIdcardNo("510102197601294012");
         accountVO.setUserId(String.valueOf(new Random().nextInt(10)));
-        accountVO.setNickname("Eugene");
-        accountVO.setMobile("18980840323");
+        accountVO.setNickname("Dog");
+        accountVO.setMobile("18919760129");
         this.accountMapper.insert(accountVO);
     }
 
