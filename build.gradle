@@ -52,6 +52,9 @@ subprojects {
         //MybatisSpring
         mybatisSpringVersion = '1.3.1'
 
+        //MybatisPagehelper（分页插件）
+        pagehelperVersion = '5.0.4'
+
         /* Apache */
         //CommonsLang
         commonsLangVersion = '3.6'

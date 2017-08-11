@@ -13,7 +13,8 @@ dependencies {
             "com.atomikos:transactions-jdbc:$atomikosVersion",
             "org.springframework:spring-jdbc:$springFrameworkVersion",
             "org.mybatis:mybatis:$mybatisVersion",
-            "org.mybatis:mybatis-spring:$mybatisSpringVersion"
+            "org.mybatis:mybatis-spring:$mybatisSpringVersion",
+            "com.github.pagehelper:pagehelper:$pagehelperVersion"
 
     )
     testCompile (
