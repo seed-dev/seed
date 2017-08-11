@@ -1,3 +1,4 @@
+import com.github.pagehelper.PageHelper;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.AccountVO;
 import org.junit.Assert;
@@ -55,6 +56,8 @@ public class AccountTest {
 
     @Test
     public void testSelectAll() {
+//        PageHelper.startPage(1, 5);
+//        PageHelper.offsetPage(1, 5);
         List<AccountVO> accounts = this.accountMapper.selectAll();
         System.out.println(accounts.size());
         Assert.assertEquals(2, accounts.size());
