@@ -169,7 +169,7 @@ subprojects {
                 "org.springframework:spring-test:$springFrameworkVersion"
         )
 
-        compile fileTree(dir: 'lib', include: ['*.jar'])
+        compile fileTree(dir: 'libs', include: ['*.jar'])
     }
 }
 
