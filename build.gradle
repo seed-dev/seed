@@ -48,8 +48,20 @@ subprojects {
         //SpringFramework
         springFrameworkVersion = '4.3.10.RELEASE'
 
+        //SpringDataMongodb
+        springDataMongodbVersion = '1.10.6.RELEASE'
+
+        //SpringDataRedis
+        springDataRedisVersion = '1.8.6.RELEASE'
+
+        //SpringDataJPA
+        springDataJPAVersion = '1.11.6.RELEASE'
+
         //SpringBoot
         springBootStarterWeb = '1.5.6.RELEASE'
+
+        //Hibernate
+        hibernateVersion = '5.2.10.Final'
 
         //Mybatis
         mybatisVersion = '3.4.4'
@@ -95,11 +107,16 @@ subprojects {
         //Druid
         druidVersion = '1.1.2'
 
-        //atomikos
+        //Atomikos
         atomikosVersion = '4.0.4'
 
         //JTA
         jtaVersion = '1.1'
+
+        //Ehcache
+        ehcache2Version = '2.10.4'
+
+        echache3Version = '3.3.1'
 
         /* DB */
         //MysqlConnectorJava
@@ -113,6 +130,7 @@ subprojects {
 
         //JRedis
         jRedisVersion = '2.9.0'
+
         //MemcachedJavaClient
         memcachedJavaClientVersion = '3.0.2'
 
@@ -130,8 +148,11 @@ subprojects {
         slf4jVersion = '1.7.25'
 
         /* JSON */
-        //jackson
+        //Jackson
         jacksonVersion = '2.9.0'
+
+        //Gson
+        gsonVersion = '2.8.1'
 
         //Cglib
         cglibVersion = '3.2.5'
