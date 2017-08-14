@@ -57,6 +57,12 @@ subprojects {
         //SpringDataJPA
         springDataJPAVersion = '1.11.6.RELEASE'
 
+        //SpringAMQP
+        springRabbitVersion = '1.7.3.RELEASE'
+
+        //SpringKafka
+        springKafkaVersion = '1.2.2.RELEASE'
+
         //SpringBoot
         springBootStarterWeb = '1.5.6.RELEASE'
 
@@ -154,14 +160,16 @@ subprojects {
         //Gson
         gsonVersion = '2.8.1'
 
+        //Fastjson
+        fastjsonVersion = '1.2.36'
+
         //Cglib
         cglibVersion = '3.2.5'
 
         //Aspectj
         aspectjVersion = '1.8.10'
 
-        //RabbitMQ
-
+        /* RabbitMQ */
         //AmqpClientVersion
         amqpClientVersion = '4.2.0'
 
@@ -170,6 +178,9 @@ subprojects {
 
         //JetbrickTemplate
         jetbrickTemplateVersion = '2.1.2'
+
+        //ValidationApi
+        validationApiVersion = '2.0.0.Final'
 
         //Servlet
         servletApiVersion = '3.1.0'
