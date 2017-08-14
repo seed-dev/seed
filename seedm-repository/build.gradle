@@ -8,6 +8,7 @@ dependencies {
             "org.aspectj:aspectjweaver:$aspectjVersion",
             "com.alibaba:druid:$druidVersion",
             "org.mariadb.jdbc:mariadb-java-client:$mariaDBJavaClientVersion",
+//            "mysql:mysql-connector-java:$mysqlConnectorJavaVersion",
             "com.atomikos:transactions:$atomikosVersion",
             "com.atomikos:transactions-jta:$atomikosVersion",
             "com.atomikos:transactions-jdbc:$atomikosVersion",
