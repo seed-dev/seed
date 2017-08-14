@@ -3,8 +3,13 @@
  */
 allprojects {
     repositories {
-        mavenCentral()
-        mavenLocal()
+//        maven {
+//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+//        }
+        maven {
+            url 'http://192.168.0.129/repository/comsys/'
+        }
+//        mavenCentral()
     }
 
     task createJavaProject << {

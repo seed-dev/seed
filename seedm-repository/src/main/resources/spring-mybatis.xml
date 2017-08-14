@@ -11,14 +11,6 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath*:conf/db.properties</value>
-            </list>
-        </property>
-    </bean>
-
     <!--Atomikos-->
     <bean id="parentAtomikosDs" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" abstract="true">
         <property name="xaDataSourceClassName" value="${maria.xaDataSourceClassName}" />
