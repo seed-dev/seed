@@ -3,13 +3,10 @@
  */
 allprojects {
     repositories {
-//        maven {
-//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-//        }
         maven {
-            url 'http://192.168.0.129/repository/comsys/'
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
         }
-//        mavenCentral()
+        mavenCentral()
     }
 
     task createJavaProject << {
@@ -145,19 +142,6 @@ subprojects {
         //MemcachedJavaClient
         memcachedJavaClientVersion = '3.0.2'
 
-        /* Log */
-        //Logback
-        logbackVersion = '1.2.3'
-
-        //LogbackExtSpring
-        logbackExtSpringVersion = '0.1.4'
-
-        //Log4j
-        log4jVersion = '2.8.2'
-
-        //Slf4j
-        slf4jVersion = '1.7.25'
-
         /* JSON */
         //Jackson
         jacksonVersion = '2.9.0'
@@ -187,6 +171,7 @@ subprojects {
         //JMS
         jmsVersion = '1.1'
 
+        /* Web */
         //JetbrickTemplate
         jetbrickTemplateVersion = '2.1.2'
 
@@ -198,6 +183,19 @@ subprojects {
 
         //JSTL
         jstlVersion = '1.2'
+
+        /* Test And Log */
+        //Logback
+        logbackVersion = '1.2.3'
+
+        //LogbackExtSpring
+        logbackExtSpringVersion = '0.1.4'
+
+        //Log4j
+        log4jVersion = '2.8.2'
+
+        //Slf4j
+        slf4jVersion = '1.7.25'
 
         //Junit
         junitVersion = '4.12'
