@@ -17,9 +17,14 @@ allprojects {
         sourceSets*.resources.srcDirs*.each { it.mkdirs()}
     }
 
-    task createThriftProject << {
-        sourceSets*.thrift.srcDirs*.each { it.mkdirs() }
-        sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+    task createScalaProject << {
+        sourceSets*.scala.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    }
+
+    task createGroovyProject << {
+        sourceSets*.groovy.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs() }
     }
 
     task createThriftJavaProject << {
@@ -172,6 +177,12 @@ subprojects {
         /* RabbitMQ */
         //AmqpClientVersion
         amqpClientVersion = '4.2.0'
+
+        //Scala
+        scalaVersion = '2.12.3'
+
+        //Groovy
+        groovyAllVersion = '2.4.12'
 
         //JMS
         jmsVersion = '1.1'
