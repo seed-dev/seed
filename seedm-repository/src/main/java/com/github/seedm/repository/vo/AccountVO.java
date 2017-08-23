@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * 账号表映射的值对象
+ * 账号表映射VO
  */
 public class AccountVO {
 
