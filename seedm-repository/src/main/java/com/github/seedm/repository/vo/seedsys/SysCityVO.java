@@ -1,10 +1,10 @@
-package com.github.seedm.repository.vo;
+package com.github.seedm.repository.vo.seedsys;
 
 /**
- * 行政区表映射VO
+ * 市级表映射VO
  * @author Eugene
  */
-public class DistrictVO {
+public class SysCityVO {
 
     /**
      * 主键
@@ -12,28 +12,28 @@ public class DistrictVO {
     private Long id;
 
     /**
-     * 行政区编码
+     * 市级编码
      */
     private String code;
 
     /**
-     * 行政区名称
+     * 市级名称
      */
     private String name;
 
     /**
-     * 所属市
+     * 所属省份
      */
-    private CityVO cityVO;
+    private SysProvincesVO provincesVO;
 
-    public DistrictVO() {
+    public SysCityVO() {
     }
 
-    public DistrictVO(Long id, String code, String name, CityVO cityVO) {
+    public SysCityVO(Long id, String code, String name, SysProvincesVO provincesVO) {
         this.id = id;
         this.code = code;
         this.name = name;
-        this.cityVO = cityVO;
+        this.provincesVO = provincesVO;
     }
 
     public Long getId() {
@@ -60,11 +60,11 @@ public class DistrictVO {
         this.name = name;
     }
 
-    public CityVO getCityVO() {
-        return cityVO;
+    public SysProvincesVO getProvincesVO() {
+        return provincesVO;
     }
 
-    public void setCityVO(CityVO cityVO) {
-        this.cityVO = cityVO;
+    public void setProvincesVO(SysProvincesVO provincesVO) {
+        this.provincesVO = provincesVO;
     }
 }

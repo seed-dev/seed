@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.vo.AccountVO;
+import com.github.seedm.repository.vo.seed.AccountVO;
 
 import java.util.List;
 

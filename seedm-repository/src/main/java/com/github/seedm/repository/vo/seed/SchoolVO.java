@@ -1,4 +1,4 @@
-package com.github.seedm.repository.vo;
+package com.github.seedm.repository.vo.seed;
 
 /**
  * 行政区表映射VO

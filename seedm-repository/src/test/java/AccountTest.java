@@ -1,5 +1,5 @@
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
-import com.github.seedm.repository.vo.AccountVO;
+import com.github.seedm.repository.vo.seed.AccountVO;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;

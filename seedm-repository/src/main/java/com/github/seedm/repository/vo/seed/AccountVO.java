@@ -1,4 +1,4 @@
-package com.github.seedm.repository.vo;
+package com.github.seedm.repository.vo.seed;
 
 import java.sql.Timestamp;
 import java.util.Date;
