@@ -38,21 +38,49 @@
         </property>
     </bean>
 
+    <bean id="seedSysAtomikosDs" parent="parentAtomikosDs">
+        <property name="uniqueResourceName" value="jdbc/seedSysDs" />
+        <property name="xaProperties">
+            <props>
+                <prop key="URL">${seedsys.url}</prop>
+                <prop key="user">${seedsys.username}</prop>
+                <prop key="password">${seedsys.password}</prop>
+            </props>
+        </property>
+    </bean>
+
 
     <!-- MyBatis配置 -->
     <!-- 配置sqlSessionFactory -->
     <bean id="seedSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
         <property name="dataSource" ref="seedAtomikosDs" />
-        <property name="typeAliasesPackage" value="com.github.seedm.repository.vo" />
-        <!--
-            自动扫描mybatis/mapper/seed目录下的所有SQL映射的xml文件,
-            省掉Configuration.xml里的手工配置,value="classpath:mybatis/mapper/seed/*.xml"
-            指的是classpath(类路径)下mybatis.mapper.seed包中的所有xml文件
-            例如：xxxMapper.xml位于mybatis.mapper.seed包下，
-            这样xxxxMapper.xml就可以被自动扫描
-         -->
+        <property name="typeAliasesPackage" value="com.github.seedm.repository.vo.seed" />
         <property name="mapperLocations" value="classpath:mybatis/mapper/seed/*.xml" />
+        <!-- 插件配置 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <props>
+                            <prop key="offsetAsPageNum">true</prop>
+                            <prop key="rowBoundsWithCount">true</prop>
+                            <prop key="pageSizeZero">true</prop>
+                            <prop key="reasonable">true</prop>
+                            <prop key="params">pageNum=start;pageSize=limit;</prop>
+                            <prop key="supportMethodsArguments">true</prop>
+                            <prop key="autoRuntimeDialect">true</prop>
+                            <prop key="returnPageInfo">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="seedSysSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="seedSysAtomikosDs" />
+        <property name="typeAliasesPackage" value="com.github.seedm.repository.vo.seedsys" />
+        <property name="mapperLocations" value="classpath:mybatis/mapper/seedsys/*.xml" />
         <!-- 插件配置 -->
         <property name="plugins">
             <array>
@@ -79,6 +107,11 @@
         <!-- 扫描com.eugene.mybatis.repository.mapper.seed这个包以及它的子包下的所有映射接口类 -->
         <property name="basePackage" value="com.github.seedm.repository.mapper.seed" />
         <property name="sqlSessionFactoryBeanName" value="seedSqlSessionFactory" />
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描com.eugene.mybatis.repository.mapper.seed这个包以及它的子包下的所有映射接口类 -->
+        <property name="basePackage" value="com.github.seedm.repository.mapper.seedsys" />
+        <property name="sqlSessionFactoryBeanName" value="seedSysSqlSessionFactory" />
     </bean>
 
      <!-- 事务这块用spring管理atomikos -->
