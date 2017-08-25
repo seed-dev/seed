@@ -81,8 +81,8 @@ subprojects {
         pagehelperVersion = '5.0.4'
 
         /* Apache */
-        //CommonsLang
-        commonsLangVersion = '3.6'
+        //CommonsLang3
+        commonsLang3Version = '3.6'
 
         //CommonsCollections4
         commonsCollections4Version = '4.1'

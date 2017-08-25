@@ -1,7 +1,7 @@
-import com.github.pagehelper.PageHelper;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.AccountVO;
 import com.github.toolkit.core.CodecKit;
+import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,11 +12,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-core.xml"})
+//@Transactional
 public class AccountTest {
 
     @Autowired
@@ -24,34 +24,30 @@ public class AccountTest {
 
     private static CodecKit codecKit;
 
+    private static StringKit stringKit;
+
     @BeforeClass
     public static void beforClass() {
         codecKit = new CodecKit();
+        stringKit = new StringKit();
     }
 
     @Test
     public void testInsert() {
         System.out.println(this.accountMapper);
-//        AccountVO accountVO = new AccountVO();
-//        accountVO.setId(UUID.randomUUID().toString());
-//        accountVO.setName("超级管理员");
-//        accountVO.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
-//        accountVO.setBirthday(new Date());
-//        accountVO.setIdcardNo("8888888888888888");
-//        accountVO.setUserId(String.valueOf(new Random().nextInt(10)));
-//        accountVO.setNickname("管理员");
-//        accountVO.setMobile("139000000000");
-
         AccountVO accountVO = new AccountVO();
         accountVO.setId(UUID.randomUUID().toString());
-        accountVO.setName("印度阿三");
-        accountVO.setPassword(codecKit.hex("ss*963.-+".getBytes(), CodecKit.ALGORITHMS_MD5));
+        accountVO.setName("超级管理员");
+        accountVO.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
         accountVO.setBirthday(new Date());
-        accountVO.setIdcardNo("510102197601294012");
-        accountVO.setUserId(String.valueOf(new Random().nextInt(10)));
-        accountVO.setNickname("Dog");
-        accountVO.setMobile("18919760129");
+        accountVO.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
+        accountVO.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        accountVO.setNickname("管理员");
+        accountVO.setMobile(codecKit.encodeBase64("139000000000"));
         this.accountMapper.insert(accountVO);
+
+        List<AccountVO> result = this.accountMapper.selectAll();
+        Assert.assertEquals(1, result.size());
     }
 
     @Test
