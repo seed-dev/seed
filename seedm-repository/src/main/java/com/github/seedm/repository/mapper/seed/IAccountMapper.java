@@ -1,32 +1,35 @@
 package com.github.seedm.repository.mapper.seed;
 
 import com.github.seedm.repository.vo.AccountVO;
-import com.github.seedm.repository.vo.Paging;
 
 import java.util.List;
 
 /**
  * 账号表操作映射定义
+ * @author Eugene
  */
 public interface IAccountMapper {
 
     /**
      * 新增账号
      * @param accountVO 账号信息
+     * @return 成功新增账号信息条数
      */
-    public void insert(AccountVO accountVO);
+    public int insert(AccountVO accountVO);
 
     /**
      * 删除指定ID的账号
      * @param id 账号ID
+     * @return 成功删除账号信息条数
      */
-    public void deleteById(String id);
+    public int deleteById(String id);
 
     /**
      * 更新账号信息
      * @param accountVO 账号信息
+     * @return 成功更新账号信息条数
      */
-    public void update(AccountVO accountVO);
+    public int update(AccountVO accountVO);
 
     /**
      * 查询全部账号
