@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.seedm.repository.mapper.seed.ISchoolMapper">
+
+    <resultMap id="schoolMap" type="SchoolVO">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="intro" column="intro"></result>
+        <result property="address" column="address"></result>
+        <result property="contactNumber" column="contact_number"></result>
+        <result property="createTime" column="create_time"></result>
+    </resultMap>
+
+    <insert id="insert" parameterType="SchoolVO">
+        INSERT INTO account
+          (id, name, password, birthday, idcard_no, user_id, nickname, mobile)
+        VALUES
+          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{mobile})
+    </insert>
+    
+    <select id="selectAll" resultType="SchoolVO">
+        SELECT
+          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+        FROM
+          account
+    </select>
+
+    <select id="selectActive" resultMap="schoolMap">
+        SELECT
+          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+        FROM
+          account
+        WHERE
+          status = 1
+            <choose>
+                <when test="userId != null">
+                    AND user_id = #{userId}
+                </when>
+                <when test="mobile != null">
+                    AND mobile = #{mobile}
+                </when>
+            </choose>
+    </select>
+</mapper>

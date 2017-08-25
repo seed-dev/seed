@@ -15,14 +15,14 @@ public interface ISchoolMapper {
      * @param schoolVO 学校信息
      * @return 成功新增学校信息条数
      */
-    public int insertSchool(SchoolVO schoolVO);
+    public int insert(SchoolVO schoolVO);
 
     /**
      * 删除指定ID的学校信息
      * @param id 学校ID
      * @return 成功删除学校信息条数
      */
-    public int deleteSchoolById(String id);
+    public int deleteById(String id);
 
     /**
      * 更新学校信息
