@@ -23,21 +23,26 @@
     </insert>
     
     <select id="selectAll" resultType="AccountVO">
-        SELECT id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
-        FROM account
+        SELECT
+          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+        FROM
+          account
     </select>
 
     <select id="selectActive" resultMap="accountMap">
-        SELECT id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
-        FROM account
-        WHERE status = 1
-        <choose>
-            <when test="userId != null">
-                AND user_id = #{userId}
-            </when>
-            <when test="mobile != null">
-                AND mobile = #{mobile}
-            </when>
-        </choose>
+        SELECT
+          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+        FROM
+          account
+        WHERE
+          status = 1
+            <choose>
+                <when test="userId != null">
+                    AND user_id = #{userId}
+                </when>
+                <when test="mobile != null">
+                    AND mobile = #{mobile}
+                </when>
+            </choose>
     </select>
 </mapper>
