@@ -1,3 +1,5 @@
+package com.github.seedm.test.repository;
+
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.seed.AccountVO;
 import com.github.toolkit.core.CodecKit;
@@ -17,7 +19,7 @@ import java.util.UUID;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-core.xml"})
 //@Transactional
-public class AccountTest {
+public class AccountMapperTest {
 
     @Autowired
     private IAccountMapper accountMapper;
