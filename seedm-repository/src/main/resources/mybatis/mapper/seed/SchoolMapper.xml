@@ -13,33 +13,53 @@
     </resultMap>
 
     <insert id="insert" parameterType="SchoolVO">
-        INSERT INTO account
-          (id, name, password, birthday, idcard_no, user_id, nickname, mobile)
+        INSERT INTO school
+          (id, name, intro, address, contact_number, create_time)
         VALUES
-          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{mobile})
+          (#{id}, #{name}, #{intro}, #{address}, #{contactNumber}, #{createTime})
     </insert>
+
+    <insert id="insertMulti">
+        INSERT INTO school
+        (id, name, intro, address, contact_number, create_time)
+        VALUES
+        <foreach item="school" collection="list" separator=",">
+          (#{school.id}, #{school.name}, #{school.intro}, #{school.address}, #{school.contactNumber}, #{school.createTime})
+        </foreach>
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM
+            school
+        WHERE
+            id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE school
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="intro != null">name = #{intro},</if>
+            <if test="address != null">name = #{address},</if>
+            <if test="contactNumber != null">name = #{contactNumber}</if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
     
     <select id="selectAll" resultType="SchoolVO">
         SELECT
-          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+            id, name, intro, address, contact_number, create_time
         FROM
-          account
+            school
     </select>
 
-    <select id="selectActive" resultMap="schoolMap">
+    <select id="selectById" resultMap="schoolMap">
         SELECT
-          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+            id, name, intro, address, contact_number, create_time
         FROM
-          account
+            school
         WHERE
-          status = 1
-            <choose>
-                <when test="userId != null">
-                    AND user_id = #{userId}
-                </when>
-                <when test="mobile != null">
-                    AND mobile = #{mobile}
-                </when>
-            </choose>
+            id = #{id}
     </select>
 </mapper>
