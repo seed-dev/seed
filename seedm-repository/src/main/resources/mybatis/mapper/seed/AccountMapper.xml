@@ -21,6 +21,13 @@
         VALUES
           (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{mobile})
     </insert>
+
+    <insert id="insertMulti">
+        INSERT INTO account
+        (id, name, password, birthday, idcard_no, user_id, nickname, mobile)
+        VALUES
+        (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{mobile})
+    </insert>
     
     <select id="selectAll" resultType="AccountVO">
         SELECT

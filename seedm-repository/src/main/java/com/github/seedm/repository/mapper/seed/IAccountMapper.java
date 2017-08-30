@@ -18,6 +18,13 @@ public interface IAccountMapper {
     public int insert(AccountVO accountVO);
 
     /**
+     * 批量新增账号
+     * @param accounts 账号信息集合
+     * @return 成功新增账号信息条数
+     */
+    public int insertMulti(List<AccountVO> accounts);
+
+    /**
      * 删除指定ID的账号
      * @param id 账号ID
      * @return 成功删除账号信息条数
