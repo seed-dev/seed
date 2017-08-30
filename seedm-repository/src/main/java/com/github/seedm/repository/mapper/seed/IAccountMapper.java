@@ -45,7 +45,7 @@ public interface IAccountMapper {
     public List<AccountVO> selectAll();
 
     /**
-     * 查询一个指定用户ID或手机号码的账号信息
+     * 查询系统可用账号信息，指定复合条件
      * @param accountVO 账号信息
      * @return 账号信息
      */
