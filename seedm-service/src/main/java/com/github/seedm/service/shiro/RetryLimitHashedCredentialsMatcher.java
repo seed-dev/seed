@@ -25,11 +25,12 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        String username = (String) token.getPrincipal();
-        AtomicInteger retryCount = passwordRetryCache.get(username);
+        //获取账号
+        String account = (String) token.getPrincipal();
+        AtomicInteger retryCount = passwordRetryCache.get(account);
         if (retryCount == null) {
             retryCount = new AtomicInteger(0);
-            passwordRetryCache.put(username, retryCount);
+            passwordRetryCache.put(account, retryCount);
         }
         //自定义一个验证过程：当用户连续输入密码错误5次以上禁止用户登录一段时间
         if (retryCount.incrementAndGet() > 5) {
@@ -38,7 +39,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
         }
         boolean match = super.doCredentialsMatch(token, info);
         if (match) {
-            passwordRetryCache.remove(username);
+            passwordRetryCache.remove(account);
         }
         return match;
     }
