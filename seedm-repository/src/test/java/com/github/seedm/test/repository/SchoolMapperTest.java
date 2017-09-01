@@ -2,7 +2,7 @@ package com.github.seedm.test.repository;
 
 
 import com.github.seedm.repository.mapper.seed.ISchoolMapper;
-import com.github.seedm.repository.vo.seed.SchoolVO;
+import com.github.seedm.repository.vo.seed.SchoolVo;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -33,15 +33,15 @@ public class SchoolMapperTest {
 
     @Test
     public void testInsert() {
-        SchoolVO schoolVO = new SchoolVO();
+        SchoolVo schoolVo = new SchoolVo();
         String id = stringKit.uuid(true);
-        schoolVO.setId(id);
-        schoolVO.setName("Xkilin修炼学院");
-        schoolVO.setAddress("火星星系路1号");
-        schoolVO.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
-        schoolVO.setContactNumber("0223-89898989");
+        schoolVo.setId(id);
+        schoolVo.setName("Xkilin修炼学院");
+        schoolVo.setAddress("火星星系路1号");
+        schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
+        schoolVo.setContactNumber("0223-89898989");
 
-        int count = this.schoolMapper.insert(schoolVO);
+        int count = this.schoolMapper.insert(schoolVo);
 
         //断言新增数据存在于数据库中
         Assert.assertEquals(1, count);
@@ -49,15 +49,15 @@ public class SchoolMapperTest {
 
     @Test
     public void testInsertMulti() {
-        List<SchoolVO> schools = new ArrayList<>();
-        SchoolVO school1 = new SchoolVO();
+        List<SchoolVo> schools = new ArrayList<>();
+        SchoolVo school1 = new SchoolVo();
         school1.setId(stringKit.uuid(true));
         school1.setName("Xkilin修炼学院1");
         school1.setAddress("火星星系路1号");
         school1.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
         school1.setContactNumber("0223-89898989");
 
-        SchoolVO school2 = new SchoolVO();
+        SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("Xkilin修炼学院2");
         school2.setAddress("火星星系路2号");
@@ -74,48 +74,48 @@ public class SchoolMapperTest {
 
     @Test
     public void testDeleteById() {
-        SchoolVO schoolVO = new SchoolVO();
+        SchoolVo schoolVo = new SchoolVo();
         String id = stringKit.uuid(true);
-        schoolVO.setId(id);
-        schoolVO.setName("Xkilin修炼学院x");
-        schoolVO.setAddress("火星星系路1号");
-        schoolVO.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
-        schoolVO.setContactNumber("0223-89898989");
+        schoolVo.setId(id);
+        schoolVo.setName("Xkilin修炼学院x");
+        schoolVo.setAddress("火星星系路1号");
+        schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
+        schoolVo.setContactNumber("0223-89898989");
 
-        this.schoolMapper.insert(schoolVO);
+        this.schoolMapper.insert(schoolVo);
         int count = this.schoolMapper.deleteById(id);
         Assert.assertEquals(1, count);
     }
 
     @Test
     public void testUpdate() {
-        SchoolVO schoolVO = new SchoolVO();
+        SchoolVo schoolVo = new SchoolVo();
         String id = stringKit.uuid(true);
-        schoolVO.setId(id);
-        schoolVO.setName("Xkilin修炼学院");
-        schoolVO.setAddress("火星星系路1号");
-        schoolVO.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
-        schoolVO.setContactNumber("0223-89898989");
+        schoolVo.setId(id);
+        schoolVo.setName("Xkilin修炼学院");
+        schoolVo.setAddress("火星星系路1号");
+        schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
+        schoolVo.setContactNumber("0223-89898989");
 
-        this.schoolMapper.insert(schoolVO);
-        schoolVO = this.schoolMapper.selectById(id);
-        Assert.assertNotNull(schoolVO);
-        schoolVO.setContactNumber("0222-90909090");
-        schoolVO = this.schoolMapper.selectById(id);
-        Assert.assertEquals("0222-90909090", schoolVO.getContactNumber());
+        this.schoolMapper.insert(schoolVo);
+        schoolVo = this.schoolMapper.selectById(id);
+        Assert.assertNotNull(schoolVo);
+        schoolVo.setContactNumber("0222-90909090");
+        schoolVo = this.schoolMapper.selectById(id);
+        Assert.assertEquals("0222-90909090", schoolVo.getContactNumber());
     }
 
     @Test
     public void testSelectAll() {
-        List<SchoolVO> schools = new ArrayList<>();
-        SchoolVO school1 = new SchoolVO();
+        List<SchoolVo> schools = new ArrayList<>();
+        SchoolVo school1 = new SchoolVo();
         school1.setId(stringKit.uuid(true));
         school1.setName("Xkilin修炼学院1");
         school1.setAddress("火星星系路1号");
         school1.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
         school1.setContactNumber("0223-89898989");
 
-        SchoolVO school2 = new SchoolVO();
+        SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("Xkilin修炼学院2");
         school2.setAddress("火星星系路2号");

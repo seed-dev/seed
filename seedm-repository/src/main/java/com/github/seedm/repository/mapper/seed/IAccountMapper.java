@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.vo.seed.AccountVO;
+import com.github.seedm.repository.vo.seed.AccountVo;
 
 import java.util.List;
 
@@ -12,17 +12,17 @@ public interface IAccountMapper {
 
     /**
      * 新增账号
-     * @param accountVO 账号信息
+     * @param accountVo 账号信息
      * @return 成功新增账号信息条数
      */
-    public int insert(AccountVO accountVO);
+    public int insert(AccountVo accountVo);
 
     /**
      * 批量新增账号
      * @param accounts 账号信息集合
      * @return 成功新增账号信息条数
      */
-    public int insertMulti(List<AccountVO> accounts);
+    public int insertMulti(List<AccountVo> accounts);
 
     /**
      * 删除指定ID的账号
@@ -33,28 +33,28 @@ public interface IAccountMapper {
 
     /**
      * 更新账号信息
-     * @param accountVO 账号信息
+     * @param accountVo 账号信息
      * @return 成功更新账号信息条数
      */
-    public int update(AccountVO accountVO);
+    public int update(AccountVo accountVo);
 
     /**
      * 查询全部账号
      * @return 系统全部账号列表
      */
-    public List<AccountVO> selectAll();
+    public List<AccountVo> selectAll();
 
     /**
      * 查询账号信息，指定复合条件，仅查看当前激活用户
-     * @param accountVO 账号信息
+     * @param accountVo 账号信息
      * @return 账号信息
      */
-    public AccountVO selectActiveAccounts(AccountVO accountVO);
+    public AccountVo selectActiveAccounts(AccountVo accountVo);
 
     /**
      * 查询账号信息，指定复合条件，不区分激活和非激活用户
-     * @param accountVO 账号信息
+     * @param accountVo 账号信息
      * @return 账号信息
      */
-    public AccountVO selectAccounts(AccountVO accountVO);
+    public AccountVo selectAccounts(AccountVo accountVo);
 }

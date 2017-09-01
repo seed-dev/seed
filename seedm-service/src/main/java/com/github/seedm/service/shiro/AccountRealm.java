@@ -1,6 +1,6 @@
 package com.github.seedm.service.shiro;
 
-import com.github.seedm.repository.vo.seed.AccountVO;
+import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.seedm.service.IAccountService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -25,7 +25,7 @@ public class AccountRealm extends AuthorizingRealm {
         this.logger.info("===============用户授权认证===============");
         //获取账号
         String mobile = principals.getPrimaryPrincipal().toString();
-//        AccountVO accountVO = new AccountVO();
+//        AccountVo accountVO = new AccountVo();
 //        accountVO.setMobile(mobile);
 //        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 //        simpleAuthorizationInfo.setRoles();
@@ -38,9 +38,9 @@ public class AccountRealm extends AuthorizingRealm {
         final int ACCOUNT_LOCKED = 2;
         //获取账号
         String mobile = token.getPrincipal().toString();
-        AccountVO accountVO = new AccountVO();
-        accountVO.setMobile(mobile);
-        AccountVO account = this.accountService.queryActive(accountVO);
+        AccountVo accountVo = new AccountVo();
+        accountVo.setMobile(mobile);
+        AccountVo account = this.accountService.queryActive(accountVo);
 
         if (account == null) {
             //账号不存在抛出异常

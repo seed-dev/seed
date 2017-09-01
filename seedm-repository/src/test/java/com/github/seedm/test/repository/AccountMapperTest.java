@@ -1,7 +1,7 @@
 package com.github.seedm.test.repository;
 
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
-import com.github.seedm.repository.vo.seed.AccountVO;
+import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
@@ -38,27 +38,27 @@ public class AccountMapperTest {
     @Test
     public void testInsert() {
         System.out.println(this.accountMapper);
-        AccountVO accountVO = new AccountVO();
-        accountVO.setId(UUID.randomUUID().toString());
-        accountVO.setName("超级管理员");
-        accountVO.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
-        accountVO.setBirthday(new Date());
-        accountVO.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
-        accountVO.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
-        accountVO.setNickname("管理员");
-        accountVO.setMobile(codecKit.encodeBase64("139000000000"));
-        this.accountMapper.insert(accountVO);
+        AccountVo accountVo = new AccountVo();
+        accountVo.setId(UUID.randomUUID().toString());
+        accountVo.setName("超级管理员");
+        accountVo.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+        accountVo.setBirthday(new Date());
+        accountVo.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
+        accountVo.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        accountVo.setNickname("管理员");
+        accountVo.setMobile(codecKit.encodeBase64("139000000000"));
+        this.accountMapper.insert(accountVo);
 
-        List<AccountVO> result = this.accountMapper.selectAll();
+        List<AccountVo> result = this.accountMapper.selectAll();
         Assert.assertEquals(1, result.size());
     }
 
     @Test
     public void testSelectActive() {
-        AccountVO accountVO = new AccountVO();
-//        accountVO.setUserId("super");
-        accountVO.setMobile(codecKit.encodeBase64("139000000000"));
-        AccountVO result = this.accountMapper.selectActiveAccounts(accountVO);
+        AccountVo accountVo = new AccountVo();
+//        accountVo.setUserId("super");
+        accountVo.setMobile(codecKit.encodeBase64("139000000000"));
+        AccountVo result = this.accountMapper.selectActiveAccounts(accountVo);
         System.out.println(result.getName());
     }
 
@@ -66,7 +66,7 @@ public class AccountMapperTest {
     public void testSelectAll() {
 //        PageHelper.startPage(1, 5);
 //        PageHelper.offsetPage(1, 5);
-        List<AccountVO> accounts = this.accountMapper.selectAll();
+        List<AccountVo> accounts = this.accountMapper.selectAll();
         System.out.println(accounts.size());
         Assert.assertEquals(2, accounts.size());
     }

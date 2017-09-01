@@ -4,7 +4,7 @@ package com.github.seedm.repository.vo.seed;
  * 行政区表映射VO
  * @author Eugene
  */
-public class SchoolVO {
+public class SchoolVo {
 
     /**
      * 主键
@@ -36,10 +36,10 @@ public class SchoolVO {
      */
     private String createTime;
 
-    public SchoolVO() {
+    public SchoolVo() {
     }
 
-    public SchoolVO(String id, String name, String intro, String address, String contactNumber) {
+    public SchoolVo(String id, String name, String intro, String address, String contactNumber) {
         this.id = id;
         this.name = name;
         this.intro = intro;
