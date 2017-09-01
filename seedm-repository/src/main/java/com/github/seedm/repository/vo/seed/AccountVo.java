@@ -29,6 +29,20 @@ public class AccountVo {
 
     private Timestamp createTime;
 
+    public AccountVo() {
+    }
+
+    public AccountVo(String password, String mobile) {
+        this.password = password;
+        this.mobile = mobile;
+    }
+
+    public AccountVo(String password, String mobile, int status) {
+        this.password = password;
+        this.mobile = mobile;
+        this.status = status;
+    }
+
     public String getId() {
         return id;
     }
