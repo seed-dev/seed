@@ -36,9 +36,9 @@
           account
     </select>
 
-    <select id="selectActive" resultMap="accountMap">
+    <select id="selectActiveAccounts" resultMap="accountMap">
         SELECT
-          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+          id, name, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
         FROM
           account
         WHERE

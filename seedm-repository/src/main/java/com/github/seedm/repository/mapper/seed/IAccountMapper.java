@@ -45,9 +45,16 @@ public interface IAccountMapper {
     public List<AccountVO> selectAll();
 
     /**
-     * 查询系统可用账号信息，指定复合条件
+     * 查询账号信息，指定复合条件，仅查看当前激活用户
      * @param accountVO 账号信息
      * @return 账号信息
      */
-    public AccountVO selectActive(AccountVO accountVO);
+    public AccountVO selectActiveAccounts(AccountVO accountVO);
+
+    /**
+     * 查询账号信息，指定复合条件，不区分激活和非激活用户
+     * @param accountVO 账号信息
+     * @return 账号信息
+     */
+    public AccountVO selectAccounts(AccountVO accountVO);
 }

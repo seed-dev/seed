@@ -56,10 +56,10 @@ public class AccountMapperTest {
     @Test
     public void testSelectActive() {
         AccountVO accountVO = new AccountVO();
-        accountVO.setUserId("super");
-//        accountVO.setMobile("139000000000");
-        AccountVO result = this.accountMapper.selectActive(accountVO);
-        System.out.println(result.getPassword());
+//        accountVO.setUserId("super");
+        accountVO.setMobile(codecKit.encodeBase64("139000000000"));
+        AccountVO result = this.accountMapper.selectActiveAccounts(accountVO);
+        System.out.println(result.getName());
     }
 
     @Test

@@ -3,7 +3,7 @@
 <!-- monitorInterval表示每隔1800秒重新读取配置文件，可以不重启应用的情况下修改配置 -->
 <configuration status="off" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">d:/logs</property>
+        <property name="LOG_HOME">d:/temp/logs</property>
         <!-- 日志备份目录 -->
         <property name="BACKUP_HOME">{LOG_HOME}/backup</property>
         <property name="PROJECT_NAME">seedm</property>

@@ -26,15 +26,15 @@
   </div>
   <div id="loginForm" class="am-g">
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-      <form method="post" class="am-form" @submit.prevent>
+      <form id="login" action="${pageContext.request.contextPath}/login/submit" method="post" class="am-form" @submit.prevent="login">
         <div class="am-input-group">
           <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-          <input type="text" class="am-form-field" placeholder="手机号码/用户ID/邮箱" v-model="account" />
+          <input type="text" class="am-form-field" name="account" placeholder="手机号码/用户ID/邮箱" v-model="account" />
         </div>
 
         <div class="am-input-group">
           <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-          <input type="text" class="am-form-field" placeholder="请输入密码" v-model="password" />
+          <input type="text" class="am-form-field" name="password" placeholder="请输入密码" v-model="password" />
         </div>
 
         <label for="remember-me">
@@ -43,7 +43,7 @@
         <br />
         <div class="am-cf">
           <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fl">
-          <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fr" @click="login">
+          <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fr">
         </div>
       </form>
       <hr>

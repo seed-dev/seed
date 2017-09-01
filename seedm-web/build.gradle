@@ -3,7 +3,12 @@ version '1.0.0'
 
 dependencies {
     compile project(':seedm-entities')
+    compile project(':seedm-service')
     compile (
+            "org.ehcache.modules:ehcache-core:$echacheCore3Version",
+            "org.apache.commons:commons-lang3:$commonsLang3Version",
+            "org.apache.commons:commons-text:$commonsTextVersion",
+            "commons-codec:commons-codec:$commonsCodecVersion",
             "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion",
             "com.fasterxml.jackson.core:jackson-core:$jacksonVersion",
             "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",

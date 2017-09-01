@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- Shiro -->
+	<!-- 安全管理器-->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="accountRealm"/>
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+
+	<!-- EhCache缓存管理 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
+	<!-- Shiro生命周期处理器 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器必须的 -->
+		<property name="securityManager" ref="securityManager"/>
+		<!--&lt;!&ndash; 身份认证失败: 跳转至登陆页面 &ndash;&gt;-->
+		<!--<property name="loginUrl" value="/index.jsp"/>-->
+		<!--&lt;!&ndash; 权限认证失败: 未认证跳转的地址 &ndash;&gt;-->
+		<!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
+		<!-- Shiro连接约束配置,即过滤链的定义 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- 对静态资源设置匿名访问 -->
+				/login = anon
+				<!-- /** = authc 所有url都必须认证通过才可以访问 -->
+				/admin* = authc
+			</value>
+		</property>
+	</bean>
+</beans>

@@ -9,7 +9,7 @@ window.onload = function () {
             login: function () {
                 if(this.account.length != 0 && this.password.length != 0) {
                     console.log('用户：' + this.account + ",使用密码：" + this.password + "登录了！");
-                    window.location.href = '/seedm/main/index';
+                    document.getElementById("login").submit();
                 } else {
                     console.log('No Account And Password!');
                 }
