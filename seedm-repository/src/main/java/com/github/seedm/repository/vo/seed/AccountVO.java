@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * 账号表映射VO
+ * @author Eugene
  */
 public class AccountVO {
 

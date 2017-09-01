@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 
 /**
  * 分页参数实体
+ * @author Eugene
  */
 public class Paging {
 
