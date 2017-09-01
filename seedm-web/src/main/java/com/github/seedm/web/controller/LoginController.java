@@ -1,10 +1,7 @@
 package com.github.seedm.web.controller;
 
-import com.github.seedm.entities.result.FlagResult;
-import com.github.seedm.repository.vo.seed.AccountVO;
 import com.github.toolkit.core.CodecKit;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
