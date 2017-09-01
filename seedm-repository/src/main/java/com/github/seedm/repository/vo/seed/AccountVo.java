@@ -1,5 +1,7 @@
 package com.github.seedm.repository.vo.seed;
 
+import com.github.seedm.entities.enumeration.StatusEnum;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -25,7 +27,7 @@ public class AccountVo {
 
     private String mobile;
 
-    private int status;
+    private StatusEnum status;
 
     private Timestamp createTime;
 
@@ -37,7 +39,7 @@ public class AccountVo {
         this.mobile = mobile;
     }
 
-    public AccountVo(String password, String mobile, int status) {
+    public AccountVo(String password, String mobile, StatusEnum status) {
         this.password = password;
         this.mobile = mobile;
         this.status = status;
@@ -107,11 +109,11 @@ public class AccountVo {
         this.mobile = mobile;
     }
 
-    public int getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
