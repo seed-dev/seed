@@ -54,6 +54,8 @@
 			Shiro连接约束配置,即过滤链的定义
 			authc:必须登陆才能访问
 			anon:匿名访问
+			roles[角色名]:必须为指定角色
+			perms[xxx:xxx]:必须为指定权限
 		 -->
 		<property name="filterChainDefinitions">
 			<value>
