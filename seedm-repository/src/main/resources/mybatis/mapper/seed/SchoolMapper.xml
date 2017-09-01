@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.seedm.repository.mapper.seed.ISchoolMapper">
 
-    <resultMap id="schoolMap" type="SchoolVO">
+    <resultMap id="schoolMap" type="SchoolVo">
         <id property="id" column="id"></id>
         <result property="name" column="name"></result>
         <result property="intro" column="intro"></result>
@@ -12,7 +12,7 @@
         <result property="createTime" column="create_time"></result>
     </resultMap>
 
-    <insert id="insert" parameterType="SchoolVO">
+    <insert id="insert" parameterType="SchoolVo">
         INSERT INTO school
           (id, name, intro, address, contact_number, create_time)
         VALUES
@@ -47,7 +47,7 @@
             id = #{id}
     </update>
     
-    <select id="selectAll" resultType="SchoolVO">
+    <select id="selectAll" resultType="SchoolVo">
         SELECT
             id, name, intro, address, contact_number, create_time
         FROM
