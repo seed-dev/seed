@@ -93,6 +93,9 @@ subprojects {
         //CommonsCodec
         commonsCodecVersion = '1.10'
 
+        //CommonsText
+        commonsTextVersion = '1.1'
+
         //HttpComponentsClient
         httpComponentsClientVersion = '4.5.3'
 
@@ -122,9 +125,11 @@ subprojects {
         jtaVersion = '1.1'
 
         //Ehcache
-        ehcache2Version = '2.10.4'
+        ehcacheVersion = '2.10.4'
 
-        echache3Version = '3.3.1'
+        ehcacheCore2Version = '2.6.1'
+
+        echacheCore3Version = '3.4.0'
 
         /* DB */
         //MysqlConnectorJava
