@@ -9,12 +9,25 @@
 	<!-- 安全管理器-->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="accountRealm"/>
-		<property name="cacheManager" ref="cacheManager" />
+		<!--<property name="cacheManager" ref="cacheManager" />-->
 	</bean>
 
 	<!-- EhCache缓存管理 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
+	<!-- 账号凭证匹配器，密码输入错误五次会冻结一段时间 -->
+	<bean id="credentialsMatcher" class="com.github.seedm.service.shiro.RetryLimitHashedCredentialsMatcher">
+		<constructor-arg ref="cacheManager" />
+		<property name="hashAlgorithmName" value="md5" />
+		<property name="hashIterations" value="2" />
+		<property name="storedCredentialsHexEncoded" value="true" />
+	</bean>
+
+	<!-- 账号信息权限验证 -->
+	<bean id="accountRealm" class="com.github.seedm.service.shiro.AccountRealm">
+		<property name="credentialsMatcher" ref="credentialsMatcher" />
 	</bean>
 
 	<!-- Shiro生命周期处理器 -->
@@ -23,20 +36,23 @@
 		<property name="securityManager" ref="securityManager"/>
 	</bean>
 
+	<!-- ShrioWeb过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<!-- 安全管理器必须的 -->
 		<property name="securityManager" ref="securityManager"/>
-		<!--&lt;!&ndash; 身份认证失败: 跳转至登陆页面 &ndash;&gt;-->
-		<!--<property name="loginUrl" value="/index.jsp"/>-->
-		<!--&lt;!&ndash; 权限认证失败: 未认证跳转的地址 &ndash;&gt;-->
-		<!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
-		<!-- Shiro连接约束配置,即过滤链的定义 -->
+		<!-- 身份认证失败: 跳转至登陆页面 -->
+		<property name="loginUrl" value="/"/>
+		<!-- 权限认证失败: 未认证跳转至登陆页面 -->
+		<property name="unauthorizedUrl" value="/"/>
+		<!--
+			Shiro连接约束配置,即过滤链的定义
+			authc:必须登陆才能访问
+			anon:匿名访问
+		 -->
 		<property name="filterChainDefinitions">
 			<value>
-				<!-- 对静态资源设置匿名访问 -->
-				/login = anon
-				<!-- /** = authc 所有url都必须认证通过才可以访问 -->
-				/admin* = authc
+				/main/index = authc
+				/** = anon
 			</value>
 		</property>
 	</bean>
