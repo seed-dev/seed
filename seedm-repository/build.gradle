@@ -2,6 +2,7 @@ group 'seedm'
 version '1.0.0'
 
 dependencies {
+    compile project (":seedm-entities")
     compile (
             "javax.transaction:jta:$jtaVersion",
             "org.aspectj:aspectjrt:$aspectjVersion",
