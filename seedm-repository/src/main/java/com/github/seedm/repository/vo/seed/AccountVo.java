@@ -4,6 +4,7 @@ import com.github.seedm.entities.enumeration.StatusEnum;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 账号表映射VO
@@ -27,9 +28,11 @@ public class AccountVo {
 
     private String mobile;
 
-    private StatusEnum status;
+    private StatusEnum status = StatusEnum.ACTIVATE;
 
     private Timestamp createTime;
+
+    private List<SchoolVo> schools;
 
     public AccountVo() {
     }
@@ -123,5 +126,13 @@ public class AccountVo {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    public List<SchoolVo> getSchools() {
+        return schools;
+    }
+
+    public void setSchools(List<SchoolVo> schools) {
+        this.schools = schools;
     }
 }
