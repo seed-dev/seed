@@ -6,15 +6,16 @@ package com.github.seedm.entities.enumeration;
  */
 public enum RoleEnum {
 
-    GUARDIAN("guardian"), TEACHER("teacher"), INSTRUCTOR("instructor"), PRINCIPAL("principal");
+    STUDENT("学生", "student"), GUARDIAN("监护人", "guardian"), TEACHER("老师", "teacher"), INSTRUCTOR("辅导员", "instructor"), PRINCIPAL("校长", "principal");
 
-    private String role;
+    private String name;
 
-    RoleEnum(String role) {
-        this.role = role;
+    private String sign;
+
+    RoleEnum(String name, String sign) {
+        this.name = name;
+        this.sign = sign;
     }
 
-    public String getRole() {
-        return this.role;
-    }
+
 }
