@@ -2,6 +2,8 @@ package com.github.seedm.repository.mapper.seed;
 
 import com.github.seedm.repository.vo.seed.RoleVo;
 
+import java.util.List;
+
 /**
  * 角色表映射操作定义
  * @author Eugene
@@ -14,6 +16,13 @@ public interface IRoleMapper {
      * @return 成功新增的数据条数
      */
     public int insert(RoleVo roleVo);
+
+    /**
+     * 批量新增角色
+     * @param roles 角色信息集合
+     * @return 成功新增的数据条数
+     */
+    public int insertMulti(List<RoleVo> roles);
 
     /**
      * 根据ID查询角色信息

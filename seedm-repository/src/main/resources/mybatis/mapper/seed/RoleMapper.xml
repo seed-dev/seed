@@ -10,6 +10,15 @@
           (#{id}, #{name}, #{sign}, #{description})
     </insert>
 
+    <insert id="insertMulti">
+         INSERT INTO role
+          (id, name, sign, description)
+         VALUES
+         <foreach item="role" collection="list" separator=",">
+          (#{role.id}, #{role.name}, #{role.sign}, #{role.description})
+         </foreach>
+    </insert>
+
     <select id="selectById" resultType="RoleVo">
         SELECT
           id, name, sign, description

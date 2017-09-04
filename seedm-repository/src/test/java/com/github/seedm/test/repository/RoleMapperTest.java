@@ -35,12 +35,57 @@ public class RoleMapperTest {
     }
 
     @Test
+    @Rollback(false)
+    public void testInitData() {
+
+        List<RoleVo> roles = new ArrayList<>();
+
+        RoleVo principal = new RoleVo();
+        principal.setId(stringKit.uuid(true));
+        principal.setName("校长");
+        principal.setSign(RoleEnum.PRINCIPAL);
+        principal.setDescription("这是Milan学院的校长角色");
+
+        RoleVo teacher = new RoleVo();
+        teacher.setId(stringKit.uuid(true));
+        teacher.setName("老师");
+        teacher.setSign(RoleEnum.TEACHER);
+        teacher.setDescription("这是Milan学院的老师角色");
+
+        RoleVo instructor = new RoleVo();
+        instructor.setId(stringKit.uuid(true));
+        instructor.setName("辅导员");
+        instructor.setSign(RoleEnum.INSTRUCTOR);
+        instructor.setDescription("这是Milan学院的辅导员角色");
+
+        RoleVo guardian = new RoleVo();
+        guardian.setId(stringKit.uuid(true));
+        guardian.setName("监护人");
+        guardian.setSign(RoleEnum.GUARDIAN);
+        guardian.setDescription("这是Milan学院的监护人角色");
+
+        RoleVo student = new RoleVo();
+        student.setId(stringKit.uuid(true));
+        student.setName("学生");
+        student.setSign(RoleEnum.STUDENT);
+        student.setDescription("这是Milan学院的学生角色");
+
+        roles.add(principal);
+        roles.add(teacher);
+        roles.add(instructor);
+        roles.add(guardian);
+        roles.add(student);
+
+        this.roleMapper.insertMulti(roles);
+    }
+
+    @Test
     public void testInsert() {
         RoleVo roleVo = new RoleVo();
         roleVo.setId(stringKit.uuid(true));
-        roleVo.setName("老师");
-        roleVo.setSign(RoleEnum.TEACHER);
-        roleVo.setDescription("这是Milan学院的老师角色");
+        roleVo.setName("校长");
+        roleVo.setSign(RoleEnum.PRINCIPAL);
+        roleVo.setDescription("这是Milan学院的校长角色");
 
         int count = this.roleMapper.insert(roleVo);
         Assert.assertEquals(1, count);
