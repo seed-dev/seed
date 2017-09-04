@@ -5,15 +5,21 @@ package com.github.seedm.entities.enumeration;
  * @author Eugene
  */
 public enum StatusEnum {
-    DISABLED(-1), ACTIVATE(1), LOCKED(2);
+    DISABLED("不可用", -1), ACTIVATE("可用", 1), LOCKED("冻结", 2);
 
+    private String name;
     private int status;
 
-    StatusEnum(int status) {
+    StatusEnum(String name, int status) {
+        this.name = name;
         this.status = status;
     }
 
     public int getStatus() {
         return status;
+    }
+
+    public String getName() {
+        return name;
     }
 }
