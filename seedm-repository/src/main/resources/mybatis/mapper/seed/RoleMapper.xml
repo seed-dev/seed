@@ -9,4 +9,13 @@
         VALUES
           (#{id}, #{name}, #{sign}, #{description})
     </insert>
+
+    <select id="selectById" resultType="RoleVo">
+        SELECT
+          id, name, sign, description
+        FROM
+          role
+        WHERE
+          id = #{id}
+    </select>
 </mapper>
