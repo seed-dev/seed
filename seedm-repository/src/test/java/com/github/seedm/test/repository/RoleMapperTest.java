@@ -35,7 +35,7 @@ public class RoleMapperTest {
     }
 
     @Test
-    @Rollback(false)
+//    @Rollback(false)
     public void testInitData() {
 
         List<RoleVo> roles = new ArrayList<>();
