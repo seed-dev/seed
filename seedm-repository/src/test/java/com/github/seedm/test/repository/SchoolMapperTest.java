@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,9 +37,9 @@ public class SchoolMapperTest {
         SchoolVo schoolVo = new SchoolVo();
         String id = stringKit.uuid(true);
         schoolVo.setId(id);
-        schoolVo.setName("Xkilin修炼学院");
-        schoolVo.setAddress("火星星系路1号");
-        schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
+        schoolVo.setName("ACMilan学院");
+        schoolVo.setAddress("意大利米兰城区");
+        schoolVo.setIntro("这里是一所全能的足球实训学院，提供魔鬼式的技能训练");
         schoolVo.setContactNumber("0223-89898989");
 
         int count = this.schoolMapper.insert(schoolVo);

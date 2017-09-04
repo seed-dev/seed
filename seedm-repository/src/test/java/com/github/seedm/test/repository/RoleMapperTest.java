@@ -35,7 +35,6 @@ public class RoleMapperTest {
     }
 
     @Test
-    @Rollback(false)
     public void testInsert() {
         RoleVo roleVo = new RoleVo();
         roleVo.setId(stringKit.uuid(true));
