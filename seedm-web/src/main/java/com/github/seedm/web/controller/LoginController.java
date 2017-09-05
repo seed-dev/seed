@@ -35,7 +35,7 @@ public class LoginController {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(codecKit.encodeBase64(account), codecKit.hex(password, CodecKit.ALGORITHMS_MD5));
         try {
             subject.login(usernamePasswordToken);
-            return "/main/index";
+            return "redirect:/main/index";
         } catch (UnknownAccountException e) {//错误的账号
             logger.error("用户登录账号错误", e);
         } catch (IncorrectCredentialsException e) {//错误的凭证
