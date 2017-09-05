@@ -1,8 +1,6 @@
 package com.github.seedm.test.repository;
 
-import com.github.seedm.repository.mapper.seed.IAccountSchoolMapper;
 import com.github.seedm.repository.mapper.seed.ISchoolRoleMapper;
-import com.github.seedm.repository.vo.seed.AccountSchoolVo;
 import com.github.seedm.repository.vo.seed.SchoolRoleVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
