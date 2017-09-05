@@ -13,20 +13,31 @@
         <result property="mobile" column="mobile"></result>
         <result property="password" column="password"></result>
         <result property="createTime" column="create_time"></result>
+        <collection property="schools" ofType="SchoolVo">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+            <result property="intro" column="intro"></result>
+            <result property="address" column="address"></result>
+            <result property="contactNumber" column="contact_number"></result>
+            <result property="createTime" column="create_time"></result>
+        </collection>
     </resultMap>
 
     <insert id="insert" parameterType="AccountVo">
         INSERT INTO account
-          (id, name, password, birthday, idcard_no, user_id, nickname, mobile)
+          (id, name, password, birthday, idcard_no, user_id, nickname, status, mobile)
         VALUES
-          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{mobile})
+          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{status}, #{mobile})
     </insert>
 
     <insert id="insertMulti">
         INSERT INTO account
-        (id, name, password, birthday, idcard_no, user_id, nickname, mobile)
+          (id, name, password, birthday, idcard_no, user_id, nickname, status, mobile)
         VALUES
-        (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{mobile})
+        <foreach item="account" collection="list" separator=",">
+            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.idcardNo}, #{account.userId}, #{account.nickname}, #{account.status}, #{account.mobile})
+        </foreach>
+
     </insert>
     
     <select id="selectAll" resultType="AccountVo">
@@ -42,7 +53,7 @@
         FROM
           account
         WHERE
-          status = 1
+          status = 'ACTIVATE'
             <choose>
                 <when test="userId != null">
                     AND user_id = #{userId}

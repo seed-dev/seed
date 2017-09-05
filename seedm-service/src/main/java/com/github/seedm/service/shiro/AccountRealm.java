@@ -4,6 +4,7 @@ import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.seedm.service.IAccountService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
@@ -24,33 +25,41 @@ public class AccountRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         this.logger.info("===============用户授权认证===============");
         //获取账号
-        String mobile = principals.getPrimaryPrincipal().toString();
+        String account = principals.getPrimaryPrincipal().toString();
 //        AccountVo accountVO = new AccountVo();
 //        accountVO.setMobile(mobile);
 //        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 //        simpleAuthorizationInfo.setRoles();
+//        simpleAuthorizationInfo.addObjectPermissions();
         return null;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         this.logger.info("===============用户登陆认证===============");
+        //账号已冻结
         final int ACCOUNT_LOCKED = 2;
         //获取账号
-        String mobile = token.getPrincipal().toString();
-        AccountVo accountVo = new AccountVo();
-        accountVo.setMobile(mobile);
-        AccountVo account = this.accountService.queryActive(accountVo);
+        String account = token.getPrincipal().toString();
+        //获取密码
+        String password = new String((char[]) token.getCredentials());
 
-        if (account == null) {
+        AccountVo condition = new AccountVo();
+        condition.setMobile(account);
+        AccountVo accountVo = this.accountService.queryActive(condition);
+
+        if (accountVo == null || !accountVo.getMobile().equals(account)) {
             //账号不存在抛出异常
             throw new UnknownAccountException();
-        }else if (account.getStatus().getStatus() == ACCOUNT_LOCKED) {
+        }else if (!accountVo.getPassword().equals(password)) {
+            //错误的密码抛出异常
+            throw new IncorrectCredentialsException();
+        }else if (accountVo.getStatus().getStatus() == ACCOUNT_LOCKED) {
             //账号锁定抛出异常
             throw new LockedAccountException();
         }
 
-        AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(account.getMobile(), account.getPassword(), "accountRealm");
+        AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(accountVo.getMobile(), accountVo.getPassword(), "accountRealm");
         return authenticationInfo;
     }
 }

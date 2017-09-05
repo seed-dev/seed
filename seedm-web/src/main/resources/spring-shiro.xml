@@ -9,7 +9,8 @@
 	<!-- 安全管理器-->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="accountRealm"/>
-		<!--<property name="cacheManager" ref="cacheManager" />-->
+		<property name="cacheManager" ref="cacheManager" />
+		<!--<property name="rememberMeManager" ref="rememberMeManager" />-->
 	</bean>
 
 	<!-- EhCache缓存管理 -->
@@ -27,8 +28,24 @@
 
 	<!-- 账号信息权限验证 -->
 	<bean id="accountRealm" class="com.github.seedm.service.shiro.AccountRealm">
-		<property name="credentialsMatcher" ref="credentialsMatcher" />
+		<!--<property name="credentialsMatcher" ref="credentialsMatcher" />-->
 	</bean>
+
+	<!-- rememberMeManager管理器，写cookie，取出cookie生成用户信息 -->
+	<!--<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">-->
+		<!--&lt;!&ndash; cookie加密秘钥，默认使用AES算法 &ndash;&gt;-->
+		<!--<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}" />-->
+		<!--<property name="cookie" ref="rememberMeCookie" />-->
+	<!--</bean>-->
+
+	<!-- 记住我Cookie -->
+	<!--<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">-->
+		<!--&lt;!&ndash; Cookie名字 &ndash;&gt;-->
+		<!--<constructor-arg value="rememberMe" />-->
+		<!--<property name="httpOnly" value="true" />-->
+		<!--&lt;!&ndash; Cookie失效时间为30天，单位毫秒 &ndash;&gt;-->
+		<!--<property name="maxAge" value="2592000" />-->
+	<!--</bean>-->
 
 	<!-- Shiro生命周期处理器 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
@@ -44,12 +61,13 @@
 
 	<!-- ShrioWeb过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<!-- 安全管理器必须的 -->
+		<!-- 必须指定安全管理器 -->
 		<property name="securityManager" ref="securityManager"/>
 		<!-- 身份认证失败: 跳转至登陆页面 -->
-		<property name="loginUrl" value="/"/>
+		<property name="loginUrl" value="/main/login"/>
+		<property name="successUrl" value="/main/index" />
 		<!-- 权限认证失败: 未认证跳转至登陆页面 -->
-		<property name="unauthorizedUrl" value="/"/>
+		<property name="unauthorizedUrl" value="/main/login"/>
 		<!--
 			Shiro连接约束配置,即过滤链的定义
 			authc:必须登陆才能访问
@@ -59,8 +77,9 @@
 		 -->
 		<property name="filterChainDefinitions">
 			<value>
-				/main/index = authc
-				/** = anon
+				/resources/** = anon
+				/login/submit = anon
+				/** = authc
 			</value>
 		</property>
 	</bean>

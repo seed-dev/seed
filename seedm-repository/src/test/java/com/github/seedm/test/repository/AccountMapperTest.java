@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -36,8 +37,46 @@ public class AccountMapperTest {
     }
 
     @Test
+    public void testInitAccount() {
+        List<AccountVo> accounts = new ArrayList<>();
+        AccountVo admin = new AccountVo();
+        admin.setId(stringKit.uuid(true));
+        admin.setName("超级管理员");
+        admin.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+        admin.setBirthday(new Date());
+        admin.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
+        admin.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        admin.setNickname("管理员");
+        admin.setMobile(codecKit.encodeBase64("139000000000"));
+
+        AccountVo nesta = new AccountVo();
+        nesta.setId(stringKit.uuid(true));
+        nesta.setName("内斯塔");
+        nesta.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+        nesta.setBirthday(new Date());
+        nesta.setIdcardNo(codecKit.encodeBase64("5100076666666666"));
+        nesta.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        nesta.setNickname("nesta");
+        nesta.setMobile(codecKit.encodeBase64("139000000001"));
+
+        AccountVo suso = new AccountVo();
+        suso.setId(stringKit.uuid(true));
+        suso.setName("苏索");
+        suso.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+        suso.setBirthday(new Date());
+        suso.setIdcardNo(codecKit.encodeBase64("5100075555555555"));
+        suso.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        suso.setNickname("nesta");
+        suso.setMobile(codecKit.encodeBase64("139000000002"));
+
+        accounts.add(admin);
+        accounts.add(nesta);
+        accounts.add(suso);
+        this.accountMapper.insertMulti(accounts);
+    }
+
+    @Test
     public void testInsert() {
-        System.out.println(this.accountMapper);
         AccountVo accountVo = new AccountVo();
         accountVo.setId(UUID.randomUUID().toString());
         accountVo.setName("超级管理员");

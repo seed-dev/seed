@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <jsp:forward page="/main/login" />
+    <jsp:forward page="/main/index" />
 </body>
 </html>
