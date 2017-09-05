@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-core.xml"})
-//@Transactional
+@Transactional
 public class AccountMapperTest {
 
     @Autowired
@@ -36,7 +36,7 @@ public class AccountMapperTest {
         stringKit = new StringKit();
     }
 
-    @Test
+//    @Test
     public void testInitAccount() {
         List<AccountVo> accounts = new ArrayList<>();
         AccountVo admin = new AccountVo();
