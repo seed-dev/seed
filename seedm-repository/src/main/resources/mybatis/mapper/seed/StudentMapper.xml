@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.seedm.repository.mapper.seed.IStudentMapper">
+    <resultMap id="studentMap" type="StudentVo">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex" />
+        <result property="birthday" column="birthday"></result>
+        <result property="idcardNo" column="idcard_no"></result>
+        <result property="status" column="status"></result>
+        <result property="createTime" column="create_time"></result>
+        <collection property="schools" ofType="SchoolVo">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+            <result property="intro" column="intro"></result>
+            <result property="address" column="address"></result>
+            <result property="contactNumber" column="contact_number"></result>
+            <result property="createTime" column="create_time"></result>
+        </collection>
+    </resultMap>
+
+    <insert id="insert" parameterType="StudentVo">
+        INSERT INTO student
+          (id, name, sex, birthday, idcard_no, status)
+        VALUES
+          (#{id}, #{name}, #{sex}, #{birthday}, #{idecardNo}, #{status})
+    </insert>
+
+    <insert id="insertMulti">
+        INSERT INTO student
+        (id, name, sex, birthday, idcard_no, status)
+        VALUES
+        <foreach item="student" collection="list" separator=",">
+            (#{student.id}, #{student.name}, #{student.sex}, #{student.birthday}, #{student.idcardNo}, #{student.status})
+        </foreach>
+
+    </insert>
+    
+    <select id="selectAll" resultType="StudentVo">
+        SELECT
+          id, name, sex, birthday, idcard_no, status
+        FROM
+          student
+    </select>
+
+    <!--<select id="selectActiveStudent" resultMap="studentMap">-->
+        <!--SELECT-->
+          <!--id, name, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time-->
+        <!--FROM-->
+        <!--student-->
+        <!--WHERE-->
+          <!--status = 'ACTIVATE'-->
+            <!--<choose>-->
+                <!--<when test="userId != null">-->
+                    <!--AND user_id = #{userId}-->
+                <!--</when>-->
+                <!--<when test="mobile != null">-->
+                    <!--AND mobile = #{mobile}-->
+                <!--</when>-->
+            <!--</choose>-->
+    <!--</select>-->
+</mapper>
