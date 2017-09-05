@@ -1,7 +1,7 @@
 package com.github.seedm.test.repository;
 
-import com.github.seedm.repository.mapper.seed.IAccountSchoolMapper;
-import com.github.seedm.repository.vo.seed.AccountSchoolVo;
+import com.github.seedm.repository.mapper.seed.IStudentSchoolMapper;
+import com.github.seedm.repository.vo.seed.StudentSchoolVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
@@ -14,10 +14,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-core.xml"})
-public class AccountSchoolMapperTest {
+public class StudentSchoolMapperTest {
 
     @Autowired
-    private IAccountSchoolMapper accountSchoolMapper;
+    private IStudentSchoolMapper studentSchoolMapper;
 
     private static CodecKit codecKit;
 
@@ -31,8 +31,8 @@ public class AccountSchoolMapperTest {
 
     @Test
     public void testInsert() {
-        AccountSchoolVo accoutSchoolVo = new AccountSchoolVo(stringKit.uuid(true), "ef346482-c1a3-41e5-a924-dcb4ef214044", "84961878dadc41fc8c3553f0de76eaa8");
-        int count = this.accountSchoolMapper.insert(accoutSchoolVo);
+        StudentSchoolVo accoutSchoolVo = new StudentSchoolVo(stringKit.uuid(true), "ef346482-c1a3-41e5-a924-dcb4ef214044", "84961878dadc41fc8c3553f0de76eaa8");
+        int count = this.studentSchoolMapper.insert(accoutSchoolVo);
         Assert.assertEquals(1, count);
     }
 }

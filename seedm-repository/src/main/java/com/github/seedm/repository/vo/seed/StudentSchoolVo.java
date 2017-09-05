@@ -1,9 +1,9 @@
 package com.github.seedm.repository.vo.seed;
 
 /**
- * 账号学校关系表映射VO
+ * 学生学校关系表映射VO
  */
-public class AccountSchoolVo {
+public class StudentSchoolVo {
 
     /**
      * 主键
@@ -11,21 +11,21 @@ public class AccountSchoolVo {
     private String id;
 
     /**
-     * 账号ID
+     * 学生ID
      */
-    private String accountId;
+    private String studentId;
 
     /**
      * 学校ID
      */
     private String schoolId;
 
-    public AccountSchoolVo() {
+    public StudentSchoolVo() {
     }
 
-    public AccountSchoolVo(String id, String accountId, String schoolId) {
+    public StudentSchoolVo(String id, String studentId, String schoolId) {
         this.id = id;
-        this.accountId = accountId;
+        this.studentId = studentId;
         this.schoolId = schoolId;
     }
 
@@ -37,12 +37,12 @@ public class AccountSchoolVo {
         this.id = id;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getSchoolId() {
