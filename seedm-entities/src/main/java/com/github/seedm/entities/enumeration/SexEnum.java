@@ -6,7 +6,7 @@ package com.github.seedm.entities.enumeration;
  */
 public enum SexEnum {
 
-    MALE("男", "male"), FEMALE("女", "female");
+    MALE("男", "m"), FEMALE("女", "f");
     private String name;
 
     private String sign;
