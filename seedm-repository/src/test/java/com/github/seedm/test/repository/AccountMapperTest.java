@@ -1,6 +1,7 @@
 package com.github.seedm.test.repository;
 
 import com.github.pagehelper.PageHelper;
+import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.seed.AccountVo;
@@ -12,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +53,7 @@ public class AccountMapperTest {
         accountVo.setName("测试用户");
         accountVo.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
         accountVo.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1989-02-18"));
+        accountVo.setSex(SexEnum.MALE);
         accountVo.setIdcardNo(codecKit.encodeBase64("5100078888888890"));
         accountVo.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
         accountVo.setNickname("SuperAdmin");
@@ -63,6 +66,11 @@ public class AccountMapperTest {
             temp.setName("测试用户" + (i + 1));
             temp.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
             temp.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1989-02-18"));
+            if(i % 2 == 0) {
+                temp.setSex(SexEnum.MALE);
+            } else {
+                temp.setSex(SexEnum.FEMALE);
+            }
             temp.setIdcardNo(codecKit.encodeBase64("510007888888889" + (i + 1)));
             temp.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
             temp.setNickname("Test" + (i + 1));
@@ -75,13 +83,14 @@ public class AccountMapperTest {
         Assert.assertEquals(31, result);
     }
 
-    @Test
+    @Test@Rollback(false)
     public void testInsert() throws ParseException {
         AccountVo accountVo = new AccountVo();
         accountVo.setId(stringKit.uuid(true));
         accountVo.setName("超级管理员");
         accountVo.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
         accountVo.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1984-03-08"));
+        accountVo.setSex(SexEnum.FEMALE);
         accountVo.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
         accountVo.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
         accountVo.setNickname("SuperAdmin");
@@ -98,6 +107,7 @@ public class AccountMapperTest {
         superAdmin.setName("超级管理员");
         superAdmin.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
         superAdmin.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1984-03-08"));
+        superAdmin.setSex(SexEnum.MALE);
         superAdmin.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
         superAdmin.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
         superAdmin.setNickname("SuperAdmin");
@@ -108,6 +118,7 @@ public class AccountMapperTest {
         admin.setName("管理员");
         admin.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
         admin.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1988-01-08"));
+        admin.setSex(SexEnum.MALE);
         admin.setIdcardNo(codecKit.encodeBase64("5100078888888889"));
         admin.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
         admin.setNickname("Admin");
@@ -177,6 +188,11 @@ public class AccountMapperTest {
         accountVo.setStatus(StatusEnum.ACTIVATE);
         accounts = this.accountMapper.selectAllByCriteria(accountVo);
         Assert.assertEquals(34, accounts.size());
+
+        accountVo.setSex(SexEnum.MALE);
+        accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        System.out.println(accounts.size());
+//        Assert.assertEquals(34, accounts.size());
 
     }
 }

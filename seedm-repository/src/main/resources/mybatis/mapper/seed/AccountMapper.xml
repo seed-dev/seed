@@ -7,6 +7,7 @@
         <result property="name" column="name"></result>
         <result property="password" column="password"></result>
         <result property="birthday" column="birthday"></result>
+        <result property="sex" column="sex" typeHandler="org.apache.ibatis.type.EnumTypeHandler"></result>
         <result property="idcardNo" column="idcard_no"></result>
         <result property="mobile" column="mobile"></result>
         <result property="userId" column="user_id"></result>
@@ -17,17 +18,17 @@
 
     <insert id="insert" parameterType="AccountVo">
         INSERT INTO account
-          (id, name, password, birthday, idcard_no, mobile, user_id, nickname)
+          (id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname)
         VALUES
-          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{mobile}, #{userId}, #{nickname})
+          (#{id}, #{name}, #{password}, #{birthday}, #{sex, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{idcardNo}, #{mobile}, #{userId}, #{nickname})
     </insert>
 
     <insert id="insertMulti">
         INSERT INTO account
-          (id, name, password, birthday, idcard_no, mobile, user_id, nickname)
+          (id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname)
         VALUES
         <foreach item="account" collection="list" separator=",">
-            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.idcardNo}, #{account.mobile}, #{account.userId}, #{account.nickname})
+            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.sex, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{account.idcardNo}, #{account.mobile}, #{account.userId}, #{account.nickname})
         </foreach>
 
     </insert>
@@ -46,6 +47,7 @@
           <if test="name != null">name = #{name},</if>
           <if test="password != null">password = #{password},</if>
           <if test="birthday != null">birthday = #{birthday},</if>
+          <if test="sex != null">sex = #{sex, typeHandler=org.apache.ibatis.type.EnumTypeHandler},</if>
           <if test="idcardNo != null">idcard_no = #{idcardNo},</if>
           <if test="mobile != null">mobile = #{mobile},</if>
           <if test="userId != null">user_id = #{userId},</if>
@@ -80,6 +82,7 @@
         <where>
           <if test="name != null">name LIKE CONCAT(CONCAT('%',#{name}),'%')</if>
           <if test="birthday != null">AND birthday = #{birthday}</if>
+          <if test="sex != null">AND sex = #{sex}</if>
           <if test="mobile != null">AND mobile LIKE CONCAT(CONCAT('%',#{mobile}),'%')</if>
           <if test="userId != null">AND userId = #{user_id}</if>
           <if test="nickname != null">AND nickname LIKE CONCAT(CONCAT('%',#{nickname}),'%')</if>

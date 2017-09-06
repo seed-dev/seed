@@ -1,5 +1,6 @@
 package com.github.seedm.repository.vo.seed;
 
+import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
 
 import java.sql.Timestamp;
@@ -19,6 +20,8 @@ public class AccountVo {
     private String password;
 
     private Date birthday;
+
+    private SexEnum sex;
 
     private String idcardNo;
 
@@ -42,10 +45,16 @@ public class AccountVo {
         this.mobile = mobile;
     }
 
-    public AccountVo(String password, String mobile, StatusEnum status) {
+    public AccountVo(String id, String name, String password, Date birthday, SexEnum sex, String idcardNo, String userId, String nickname, String mobile) {
+        this.id = id;
+        this.name = name;
         this.password = password;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.idcardNo = idcardNo;
+        this.userId = userId;
+        this.nickname = nickname;
         this.mobile = mobile;
-        this.status = status;
     }
 
     public String getId() {
@@ -78,6 +87,14 @@ public class AccountVo {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public SexEnum getSex() {
+        return sex;
+    }
+
+    public void setSex(SexEnum sex) {
+        this.sex = sex;
     }
 
     public String getIdcardNo() {
