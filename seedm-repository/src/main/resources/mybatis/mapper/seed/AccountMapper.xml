@@ -78,14 +78,12 @@
         FROM
           account
         <where>
-          <if test="name != null">name = #{name},</if>
-          <if test="password != null">password = #{password},</if>
-          <if test="birthday != null">birthday = #{birthday},</if>
-          <if test="idcardNo != null">idcardNo = #{idcardNo},</if>
-          <if test="mobile != null">mobile = #{mobile},</if>
-          <if test="userId != null">userId = #{user_id},</if>
-          <if test="nickname != null">nickname = #{nickname},</if>
-          <if test="status != null">status = #{status},</if>
+          <if test="name != null">name LIKE CONCAT(CONCAT('%',#{name}),'%')</if>
+          <if test="birthday != null">AND birthday = #{birthday}</if>
+          <if test="mobile != null">AND mobile LIKE CONCAT(CONCAT('%',#{mobile}),'%')</if>
+          <if test="userId != null">AND userId = #{user_id}</if>
+          <if test="nickname != null">AND nickname LIKE CONCAT(CONCAT('%',#{nickname}),'%')</if>
+          <if test="status != null">AND status = #{status, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}</if>
         </where>
     </select>
 </mapper>

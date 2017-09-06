@@ -1,6 +1,7 @@
 package com.github.seedm.test.repository;
 
 import com.github.pagehelper.PageHelper;
+import com.github.seedm.entities.enumeration.StatusEnum;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.toolkit.core.CodecKit;
@@ -163,8 +164,19 @@ public class AccountMapperTest {
     @Test
     public void testSelectActive() {
         AccountVo accountVo = new AccountVo();
-//        accountVo.setUserId("super");
-        accountVo.setMobile(codecKit.encodeBase64("139000000000"));
+        accountVo.setName("测试");
         List<AccountVo> accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        Assert.assertEquals(31, accounts.size());
+
+        accountVo.setStatus(StatusEnum.DISABLED);
+        accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        Assert.assertEquals(0, accounts.size());
+
+        accountVo.setName(null);
+        accountVo.setMobile(codecKit.encodeBase64("139"));
+        accountVo.setStatus(StatusEnum.ACTIVATE);
+        accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        Assert.assertEquals(34, accounts.size());
+
     }
 }
