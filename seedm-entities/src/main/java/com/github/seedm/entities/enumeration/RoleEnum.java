@@ -17,5 +17,11 @@ public enum RoleEnum {
         this.sign = sign;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getSign() {
+        return sign;
+    }
 }
