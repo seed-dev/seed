@@ -4,6 +4,8 @@ import com.github.seedm.entities.enumeration.RoleEnum;
 import com.github.seedm.entities.enumeration.RoleEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedJdbcTypes;
+import org.apache.ibatis.type.MappedTypes;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -19,6 +21,9 @@ public class RoleTypeHandler extends BaseTypeHandler<RoleEnum> {
     private Class<RoleEnum> type;
 
     private  RoleEnum [] enums;
+
+    public RoleTypeHandler() {
+    }
 
     public RoleTypeHandler(Class<RoleEnum> type) {
         if (type == null) {

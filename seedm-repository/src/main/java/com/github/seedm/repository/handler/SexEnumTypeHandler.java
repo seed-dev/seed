@@ -19,6 +19,9 @@ public class SexEnumTypeHandler extends BaseTypeHandler<SexEnum> {
 
     private  SexEnum [] enums;
 
+    public SexEnumTypeHandler() {
+    }
+
     public SexEnumTypeHandler(Class<SexEnum> type) {
         if (type == null) {
             throw new IllegalArgumentException("Type argument cannot be null");

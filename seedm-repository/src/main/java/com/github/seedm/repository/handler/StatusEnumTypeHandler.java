@@ -19,6 +19,9 @@ public class StatusEnumTypeHandler extends BaseTypeHandler<StatusEnum> {
 
     private  StatusEnum [] enums;
 
+    public StatusEnumTypeHandler() {
+    }
+
     public StatusEnumTypeHandler(Class<StatusEnum> type) {
         if (type == null) {
             throw new IllegalArgumentException("Type argument cannot be null");

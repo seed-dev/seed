@@ -56,6 +56,7 @@
         <property name="dataSource" ref="seedAtomikosDs" />
         <property name="typeAliasesPackage" value="com.github.seedm.repository.vo.seed" />
         <property name="mapperLocations" value="classpath:mybatis/mapper/seed/*.xml" />
+        <property name="typeHandlersPackage" value="com.github.seedm.repository.handler" />
         <!-- 插件配置 -->
         <property name="plugins">
             <array>
@@ -81,6 +82,7 @@
         <property name="dataSource" ref="seedSysAtomikosDs" />
         <property name="typeAliasesPackage" value="com.github.seedm.repository.vo.seedsys" />
         <property name="mapperLocations" value="classpath:mybatis/mapper/seedsys/*.xml" />
+        <property name="typeHandlersPackage" value="com.github.seedm.repository.handler" />
         <!-- 插件配置 -->
         <property name="plugins">
             <array>
