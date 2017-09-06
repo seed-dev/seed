@@ -40,14 +40,14 @@ public class SchoolMapperTest {
         school1.setName("训练营01");
         school1.setAddress("火星星系路1号");
         school1.setIntro("这里是一所全能的足球实训学院，提供魔鬼式的全能训练01");
-        school1.setContactNumber("0223-89898989");
+        school1.setContactNo("0223-89898989");
 
         SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("训练营02");
         school2.setAddress("火星星系路2号");
         school2.setIntro("这里是一所全能的足球实训学院，提供魔鬼式的全能训练02");
-        school2.setContactNumber("0224-56565656");
+        school2.setContactNo("0224-56565656");
 
         schools.add(school1);
         schools.add(school2);
@@ -62,7 +62,7 @@ public class SchoolMapperTest {
         schoolVo.setName("ACMilan学院");
         schoolVo.setAddress("意大利米兰城区");
         schoolVo.setIntro("这里是一所全能的足球实训学院，提供魔鬼式的技能训练");
-        schoolVo.setContactNumber("0223-89898989");
+        schoolVo.setContactNo("0223-89898989");
 
         int count = this.schoolMapper.insert(schoolVo);
 
@@ -78,14 +78,14 @@ public class SchoolMapperTest {
         school1.setName("Xkilin修炼学院1");
         school1.setAddress("火星星系路1号");
         school1.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
-        school1.setContactNumber("0223-89898989");
+        school1.setContactNo("0223-89898989");
 
         SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("Xkilin修炼学院2");
         school2.setAddress("火星星系路2号");
         school2.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练2");
-        school2.setContactNumber("0223-56565656");
+        school2.setContactNo("0223-56565656");
 
         schools.add(school1);
         schools.add(school2);
@@ -103,7 +103,7 @@ public class SchoolMapperTest {
         schoolVo.setName("Xkilin修炼学院x");
         schoolVo.setAddress("火星星系路1号");
         schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
-        schoolVo.setContactNumber("0223-89898989");
+        schoolVo.setContactNo("0223-89898989");
 
         this.schoolMapper.insert(schoolVo);
         int count = this.schoolMapper.deleteById(id);
@@ -118,14 +118,14 @@ public class SchoolMapperTest {
         schoolVo.setName("Xkilin修炼学院");
         schoolVo.setAddress("火星星系路1号");
         schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
-        schoolVo.setContactNumber("0223-89898989");
+        schoolVo.setContactNo("0223-89898989");
 
         this.schoolMapper.insert(schoolVo);
         schoolVo = this.schoolMapper.selectById(id);
         Assert.assertNotNull(schoolVo);
-        schoolVo.setContactNumber("0222-90909090");
+        schoolVo.setContactNo("0222-90909090");
         schoolVo = this.schoolMapper.selectById(id);
-        Assert.assertEquals("0222-90909090", schoolVo.getContactNumber());
+        Assert.assertEquals("0222-90909090", schoolVo.getContactNo());
     }
 
     @Test
@@ -136,14 +136,14 @@ public class SchoolMapperTest {
         school1.setName("Xkilin修炼学院1");
         school1.setAddress("火星星系路1号");
         school1.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
-        school1.setContactNumber("0223-89898989");
+        school1.setContactNo("0223-89898989");
 
         SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("Xkilin修炼学院2");
         school2.setAddress("火星星系路2号");
         school2.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练2");
-        school2.setContactNumber("0223-56565656");
+        school2.setContactNo("0223-56565656");
 
         schools.add(school1);
         schools.add(school2);

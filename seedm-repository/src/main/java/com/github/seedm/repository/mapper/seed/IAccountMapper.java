@@ -39,22 +39,22 @@ public interface IAccountMapper {
     public int update(AccountVo accountVo);
 
     /**
+     * 查询指定ID的账号
+     * @param id 账号ID
+     * @return 账号信息
+     */
+    public AccountVo selectById(String id);
+
+    /**
      * 查询全部账号
      * @return 系统全部账号列表
      */
     public List<AccountVo> selectAll();
 
     /**
-     * 查询账号信息，指定复合条件，仅查看当前激活用户
+     * 查询账号信息，使用复合条件过滤
      * @param accountVo 账号信息
-     * @return 账号信息
+     * @return 账号信息列表
      */
-    public AccountVo selectActiveAccounts(AccountVo accountVo);
-
-    /**
-     * 查询账号信息，指定复合条件，不区分激活和非激活用户
-     * @param accountVo 账号信息
-     * @return 账号信息
-     */
-    public AccountVo selectAccounts(AccountVo accountVo);
+    public List<AccountVo> selectAllByCriteria(AccountVo accountVo);
 }

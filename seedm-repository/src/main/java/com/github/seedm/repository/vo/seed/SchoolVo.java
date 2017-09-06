@@ -29,7 +29,7 @@ public class SchoolVo {
     /**
      * 学校联系方式
      */
-    private String contactNumber;
+    private String contactNo;
 
     /**
      * 学校信息创建时间
@@ -39,12 +39,12 @@ public class SchoolVo {
     public SchoolVo() {
     }
 
-    public SchoolVo(String id, String name, String intro, String address, String contactNumber) {
+    public SchoolVo(String id, String name, String intro, String address, String contactNo) {
         this.id = id;
         this.name = name;
         this.intro = intro;
         this.address = address;
-        this.contactNumber = contactNumber;
+        this.contactNo = contactNo;
     }
 
     public String getId() {
@@ -79,12 +79,12 @@ public class SchoolVo {
         this.address = address;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getContactNo() {
+        return contactNo;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     public String getCreateTime() {

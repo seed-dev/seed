@@ -5,62 +5,87 @@
     <resultMap id="accountMap" type="AccountVo">
         <id property="id" column="id"></id>
         <result property="name" column="name"></result>
+        <result property="password" column="password"></result>
         <result property="birthday" column="birthday"></result>
         <result property="idcardNo" column="idcard_no"></result>
+        <result property="mobile" column="mobile"></result>
         <result property="userId" column="user_id"></result>
         <result property="nickname" column="nickname"></result>
-        <result property="status" column="status"></result>
-        <result property="mobile" column="mobile"></result>
-        <result property="password" column="password"></result>
+        <result property="status" column="status" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"></result>
         <result property="createTime" column="create_time"></result>
-        <collection property="schools" ofType="SchoolVo">
-            <id property="id" column="id"></id>
-            <result property="name" column="name"></result>
-            <result property="intro" column="intro"></result>
-            <result property="address" column="address"></result>
-            <result property="contactNumber" column="contact_number"></result>
-            <result property="createTime" column="create_time"></result>
-        </collection>
     </resultMap>
 
     <insert id="insert" parameterType="AccountVo">
         INSERT INTO account
-          (id, name, password, birthday, idcard_no, user_id, nickname, status, mobile)
+          (id, name, password, birthday, idcard_no, mobile, user_id, nickname)
         VALUES
-          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{userId}, #{nickname}, #{status}, #{mobile})
+          (#{id}, #{name}, #{password}, #{birthday}, #{idcardNo}, #{mobile}, #{userId}, #{nickname})
     </insert>
 
     <insert id="insertMulti">
         INSERT INTO account
-          (id, name, password, birthday, idcard_no, user_id, nickname, status, mobile)
+          (id, name, password, birthday, idcard_no, mobile, user_id, nickname)
         VALUES
         <foreach item="account" collection="list" separator=",">
-            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.idcardNo}, #{account.userId}, #{account.nickname}, #{account.status}, #{account.mobile})
+            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.idcardNo}, #{account.mobile}, #{account.userId}, #{account.nickname})
         </foreach>
 
     </insert>
-    
-    <select id="selectAll" resultType="AccountVo">
+
+    <delete id="deleteById"  parameterType="AccountVo">
+        DELETE FROM
+        account
+        WHERE
+        id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE
+          account
+        <set>
+          <if test="name != null">name = #{name},</if>
+          <if test="password != null">password = #{password},</if>
+          <if test="birthday != null">birthday = #{birthday},</if>
+          <if test="idcardNo != null">idcard_no = #{idcardNo},</if>
+          <if test="mobile != null">mobile = #{mobile},</if>
+          <if test="userId != null">user_id = #{userId},</if>
+          <if test="nickname != null">nickname = #{nickname},</if>
+          <if test="status != null">status = #{status, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}</if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+
+    <select id="selectById"  resultMap="accountMap">
         SELECT
-          id, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+          id, name, password, birthday, idcard_no, mobile, user_id, nickname, status, create_time
+        FROM
+          account
+        WHERE
+          id = #{id}
+    </select>
+    
+    <select id="selectAll" resultMap="accountMap">
+        SELECT
+          id, name, password, birthday, idcard_no, mobile, user_id, nickname, status, create_time
         FROM
           account
     </select>
 
-    <select id="selectActiveAccounts" resultMap="accountMap">
+    <select id="selectAllByCriteria" resultMap="accountMap">
         SELECT
-          id, name, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time
+          id, name, password, birthday, idcard_no, mobile, user_id, nickname, status, create_time
         FROM
           account
-        WHERE
-          status = 'ACTIVATE'
-            <choose>
-                <when test="userId != null">
-                    AND user_id = #{userId}
-                </when>
-                <when test="mobile != null">
-                    AND mobile = #{mobile}
-                </when>
-            </choose>
+        <where>
+          <if test="name != null">name = #{name},</if>
+          <if test="password != null">password = #{password},</if>
+          <if test="birthday != null">birthday = #{birthday},</if>
+          <if test="idcardNo != null">idcardNo = #{idcardNo},</if>
+          <if test="mobile != null">mobile = #{mobile},</if>
+          <if test="userId != null">userId = #{user_id},</if>
+          <if test="nickname != null">nickname = #{nickname},</if>
+          <if test="status != null">status = #{status},</if>
+        </where>
     </select>
 </mapper>
