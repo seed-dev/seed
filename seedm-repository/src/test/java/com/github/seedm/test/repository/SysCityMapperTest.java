@@ -24,7 +24,7 @@ public class SysCityMapperTest {
     private ISysCityMapper sysCityMapper;
 
     @Test
-    public void testSelectAll() {
+    public void testSelectByProvince() {
         //查询四川省的所有市级
         List<SysCityVO> sysCities = this.sysCityMapper.selectByProvince("510000");
 
