@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 数据库下划线命名自动映射实体类属性驼峰命名，默认值false -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.github.seedm.repository.vo.seed" />
+        <package name="com.github.seedm.repository.vo.seedsys" />
+    </typeAliases>
+
+    <typeHandlers>
+        <package name="com.github.seedm.repository.handler" />
+    </typeHandlers>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="offsetAsPageNum" value="true" />
+            <property name="rowBoundsWithCount" value="true" />
+            <property name="pageSizeZero" value="true" />
+            <property name="reasonable" value="true" />
+            <property name="params" value="pageNum=start;pageSize=limit;" />
+            <property name="supportMethodsArguments" value="true" />
+            <property name="autoRuntimeDialect" value="true" />
+            <property name="returnPageInfo" value="true" />
+        </plugin>
+    </plugins>
+</configuration>
