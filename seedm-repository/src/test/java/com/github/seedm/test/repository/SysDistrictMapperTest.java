@@ -1,9 +1,7 @@
 package com.github.seedm.test.repository;
 
 
-import com.github.seedm.repository.mapper.seedsys.ISysCityMapper;
 import com.github.seedm.repository.mapper.seedsys.ISysDistrictMapper;
-import com.github.seedm.repository.vo.seedsys.SysCityVO;
 import com.github.seedm.repository.vo.seedsys.SysDistrictVO;
 import org.junit.Assert;
 import org.junit.Test;
