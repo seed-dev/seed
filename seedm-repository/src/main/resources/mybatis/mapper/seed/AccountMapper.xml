@@ -35,9 +35,9 @@
 
     <delete id="deleteById"  parameterType="AccountVo">
         DELETE FROM
-        account
+          account
         WHERE
-        id = #{id}
+          id = #{id}
     </delete>
 
     <update id="update">
