@@ -60,7 +60,7 @@
 
     <select id="selectById"  resultMap="accountMap">
         SELECT
-          id, name, password, birthday, idcard_no, mobile, user_id, nickname, status, create_time
+          id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname, status, create_time
         FROM
           account
         WHERE
