@@ -12,6 +12,16 @@
         <result property="createTime" column="create_time"></result>
     </resultMap>
 
+    <resultMap id="schoolWithSemesterMap" type="SchoolVo">
+        <id property="id" column="sch_id"></id>
+        <result property="name" column="sch_name"></result>
+        <result property="intro" column="intro"></result>
+        <result property="address" column="address"></result>
+        <result property="contactNo" column="contact_no"></result>
+        <result property="createTime" column="create_time"></result>
+        <association property="semesters" resultMap="com.github.seedm.repository.mapper.seed.ISemesterMapper.semesterMap" />
+    </resultMap>
+
     <insert id="insert" parameterType="SchoolVo">
         INSERT INTO school
           (id, name, intro, address, contact_no, create_time)
@@ -54,6 +64,16 @@
           school
         WHERE
           id = #{id}
+    </select>
+
+    <select id="selectWithSemesterById" resultMap="schoolWithSemesterMap">
+        SELECT
+          sch.id sch_id, sch.name sch_name, sch.intro, sch.address, sch.contact_no, sch.create_time, sem.id sem_id, sem.name sem_name, sem.status, sem.begin_time, sem.end_time
+        FROM
+          school sch LEFT JOIN semester sem ON
+          sch.id = sem.school_id
+        WHERE
+	      sch.id = #{id}
     </select>
     
     <select id="selectAll" resultType="SchoolVo">

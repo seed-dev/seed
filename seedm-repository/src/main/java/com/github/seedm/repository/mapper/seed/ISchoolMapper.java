@@ -39,13 +39,20 @@ public interface ISchoolMapper {
      */
     public int update(SchoolVo schoolVo);
 
-
     /**
      * 根据ID查询学校信息
      * @param id 学校信息ID
      * @return 学校信息
      */
     public SchoolVo selectById(String id);
+
+
+    /**
+     * 根据ID查询学校信息，关联全部学期信息列表
+     * @param id 学校信息ID
+     * @return 学校信息
+     */
+    public SchoolVo selectWithSemesterById(String id);
 
     /**
      * 查询全部学校信息

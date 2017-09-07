@@ -15,9 +15,16 @@ public interface ISemesterMapper {
     public int insert(SemesterVo semesterVo);
 
     /**
-     * 根据学期信息ID，查询学期信息同时查出所属学校信息
+     * 根据学期信息ID
      * @param id 学期信息ID
      * @return 学期信息
      */
     public SemesterVo selectById(String id);
+
+    /**
+     * 根据学期信息ID，关联所属学校信息
+     * @param id 学期信息ID
+     * @return 学期信息
+     */
+    public SemesterVo selectWithSchoolById(String id);
 }

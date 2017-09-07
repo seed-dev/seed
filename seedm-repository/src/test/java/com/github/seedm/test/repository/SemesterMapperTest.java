@@ -75,6 +75,12 @@ public class SemesterMapperTest {
     public void testSelectById() {
         SemesterVo semesterVo = this.semesterMapper.selectById(this.testSemesterId);
         Assert.assertNotNull(semesterVo);
+    }
+
+    @Test
+    public void testSelectWithSchoolById() {
+        SemesterVo semesterVo = this.semesterMapper.selectWithSchoolById(this.testSemesterId);
+        Assert.assertNotNull(semesterVo);
         Assert.assertEquals("第一学期", semesterVo.getName());
         Assert.assertEquals(-1, semesterVo.getStatus().getStatus());
         Assert.assertNotNull(semesterVo.getSchool());

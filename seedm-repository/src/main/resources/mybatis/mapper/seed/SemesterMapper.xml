@@ -4,12 +4,20 @@
 <mapper namespace="com.github.seedm.repository.mapper.seed.ISemesterMapper">
 
     <resultMap id="semesterMap" type="SemesterVo">
+        <result property="id" column="id"></result>
+        <result property="name" column="name"></result>
+        <result property="status" column="status"></result>
+        <result property="beginTime" column="begin_time"></result>
+        <result property="endTime" column="end_time"></result>
+    </resultMap>
+
+    <resultMap id="semesterWithSchoolMap" type="SemesterVo">
         <result property="id" column="sem_id"></result>
         <result property="name" column="sem_name"></result>
         <result property="status" column="status"></result>
         <result property="beginTime" column="begin_time"></result>
         <result property="endTime" column="end_time"></result>
-        <association property="school" resultMap="com.github.seedm.repository.mapper.seed.ISchoolMapper.schoolMap" />
+        <association property="school" resultMap="com.github.seedm.repository.mapper.seed.ISchoolMapper.schoolWithSemesterMap" />
     </resultMap>
 
     <insert id="insert" parameterType="SemesterVo">
@@ -20,10 +28,19 @@
     </insert>
 
     <select id="selectById" resultMap="semesterMap">
+        SELECT
+          id, name, status, begin_time, end_time
+        FROM
+          semester
+        WHERE
+          id = #{id}
+    </select>
+
+    <select id="selectWithSchoolById" resultMap="semesterWithSchoolMap">
       SELECT
-        sem.id sem_id, sem.name sem_name, sem.status, sem.begin_time, sem.end_time, sch.id, sch.name, sch.intro, sch.address, sch.contact_no, sch.create_time
+        sem.id sem_id, sem.name sem_name, sem.status, sem.begin_time, sem.end_time, sch.id sch_id, sch.name sch_name, sch.intro, sch.address, sch.contact_no, sch.create_time
       FROM
-        semester sem INNER JOIN school sch ON
+        semester sem LEFT JOIN school sch ON
         sem.school_id = sch.id
       WHERE
 	    sem.id = #{id}

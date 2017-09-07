@@ -1,8 +1,11 @@
 package com.github.seedm.test.repository;
 
 
+import com.github.seedm.entities.enumeration.StatusEnum;
 import com.github.seedm.repository.mapper.seed.ISchoolMapper;
+import com.github.seedm.repository.mapper.seed.ISemesterMapper;
 import com.github.seedm.repository.vo.seed.SchoolVo;
+import com.github.seedm.repository.vo.seed.SemesterVo;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,6 +18,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +31,13 @@ public class SchoolMapperTest {
     @Autowired
     private ISchoolMapper schoolMapper;
 
+    @Autowired
+    private ISemesterMapper semesterMapper;
+
     private static StringKit stringKit;
 
     private String testId;
+    private String testSemesterId;
 
     @BeforeClass
     public static void beforeClass(){
@@ -36,8 +45,9 @@ public class SchoolMapperTest {
     }
 
     @Before
-    public void before() {
+    public void before() throws ParseException {
         this.testId = stringKit.uuid(true);
+        this.testSemesterId = stringKit.uuid(true);
         List<SchoolVo> schools = new ArrayList<>();
         SchoolVo school1 = new SchoolVo();
         school1.setId(this.testId);
@@ -57,6 +67,14 @@ public class SchoolMapperTest {
         schools.add(school2);
         int count = this.schoolMapper.insertMulti(schools);
         Assert.assertEquals(2, count);
+
+        SemesterVo semester1 = new SemesterVo(this.testSemesterId, "第一学期", this.testId, StatusEnum.DISABLED, new SimpleDateFormat("yyyy-MM-dd").parse("2017-02-10"), new SimpleDateFormat("yyyy-MM-dd").parse("2017-07-12"));
+        SemesterVo semester2 = new SemesterVo(stringKit.uuid(true), "第二学期", this.testId, StatusEnum.ACTIVATE, new SimpleDateFormat("yyyy-MM-dd").parse("2017-09-03"), new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-25"));
+
+        count = this.semesterMapper.insert(semester1);
+        Assert.assertEquals(1, count);
+        count = this.semesterMapper.insert(semester2);
+        Assert.assertEquals(1, count);
     }
 
     @Test
@@ -123,6 +141,14 @@ public class SchoolMapperTest {
     public void testSelectById() {
         SchoolVo schoolVo = this.schoolMapper.selectById(this.testId);
         Assert.assertNotNull(schoolVo);
+    }
+
+    @Test
+    public void testSelectWithSemesterById() {
+        SchoolVo schoolVo = this.schoolMapper.selectWithSemesterById(this.testId);
+        Assert.assertNotNull(schoolVo);
+        Assert.assertEquals(this.testId, schoolVo.getId());
+        Assert.assertEquals(2, schoolVo.getSemesters().size());
     }
 
     @Test

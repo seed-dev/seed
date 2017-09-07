@@ -1,5 +1,7 @@
 package com.github.seedm.repository.vo.seed;
 
+import java.util.Set;
+
 /**
  * 行政区表映射VO
  * @author Eugene
@@ -35,6 +37,11 @@ public class SchoolVo {
      * 学校信息创建时间
      */
     private String createTime;
+
+    /**
+     * 学期列表
+     */
+    private Set<SemesterVo> semesters;
 
     public SchoolVo() {
     }
@@ -93,5 +100,13 @@ public class SchoolVo {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public Set<SemesterVo> getSemesters() {
+        return semesters;
+    }
+
+    public void setSemesters(Set<SemesterVo> semesters) {
+        this.semesters = semesters;
     }
 }
