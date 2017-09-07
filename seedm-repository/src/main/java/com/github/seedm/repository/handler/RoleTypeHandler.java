@@ -1,13 +1,9 @@
 package com.github.seedm.repository.handler;
 
 import com.github.seedm.entities.enumeration.RoleEnum;
-import com.github.seedm.entities.enumeration.RoleEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.MappedJdbcTypes;
-import org.apache.ibatis.type.MappedTypes;
 
-import javax.management.relation.Role;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
