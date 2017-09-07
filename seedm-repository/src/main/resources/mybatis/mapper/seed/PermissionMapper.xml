@@ -46,4 +46,23 @@
         WHERE
           id = #{id}
     </select>
+
+    <select id="selectAll" resultType="PermissionVo">
+        SELECT
+          id, name, sign, description
+        FROM
+          permission
+    </select>
+
+    <select id="selectAllByCriteria" resultType="PermissionVo">
+        SELECT
+          id, name, sign, description
+        FROM
+          permission
+        <where>
+            <if test="name != null">name LIKE CONCAT(CONCAT('%',#{name}),'%')</if>
+            <if test="sign != null">AND sign = #{sign}</if>
+            <if test="description != null">AND description = CONCAT(CONCAT('%',#{description}),'%')</if>
+        </where>
+    </select>
 </mapper>
