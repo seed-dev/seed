@@ -23,4 +23,14 @@ public enum SexEnum {
     public String getSign() {
         return sign;
     }
+
+    public static SexEnum getSexEnum(String sign) {
+        SexEnum [] sexEnums = SexEnum.values();
+        for (SexEnum sexEnum : sexEnums) {
+            if (sexEnum.getSign().equals(sign)) {
+                return sexEnum;
+            }
+        }
+        return null;
+    }
 }

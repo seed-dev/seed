@@ -22,4 +22,14 @@ public enum StatusEnum {
     public String getName() {
         return name;
     }
+
+    public static StatusEnum getStatusEnum(int status) {
+        StatusEnum [] statusEnums = StatusEnum.values();
+        for (StatusEnum statusEnum : statusEnums) {
+            if (statusEnum.getStatus() == status) {
+                return statusEnum;
+            }
+        }
+        return null;
+    }
 }

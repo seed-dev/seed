@@ -83,7 +83,7 @@ public class AccountMapperTest {
         Assert.assertEquals(31, result);
     }
 
-    @Test@Rollback(false)
+    @Test
     public void testInsert() throws ParseException {
         AccountVo accountVo = new AccountVo();
         accountVo.setId(stringKit.uuid(true));
@@ -161,12 +161,13 @@ public class AccountMapperTest {
     public void testSelectById() throws ParseException {
         AccountVo account = this.accountMapper.selectById(this.testId);
         Assert.assertNotNull(account);
+        System.out.println(account.getSex().getSign() + " " + account.getStatus().getStatus());
     }
 
     @Test
     public void testSelectAll() {
         List<AccountVo> accounts = this.accountMapper.selectAll();
-        Assert.assertEquals(34, accounts.size());
+        Assert.assertEquals(31, accounts.size());
 
         PageHelper.startPage(1, 10);
         accounts = this.accountMapper.selectAll();
@@ -188,12 +189,11 @@ public class AccountMapperTest {
         accountVo.setMobile(codecKit.encodeBase64("139"));
         accountVo.setStatus(StatusEnum.ACTIVATE);
         accounts = this.accountMapper.selectAllByCriteria(accountVo);
-        Assert.assertEquals(34, accounts.size());
+        Assert.assertEquals(31, accounts.size());
 
         accountVo.setSex(SexEnum.MALE);
         accounts = this.accountMapper.selectAllByCriteria(accountVo);
-        System.out.println(accounts.size());
-//        Assert.assertEquals(34, accounts.size());
+        Assert.assertEquals(16, accounts.size());
 
     }
 }
