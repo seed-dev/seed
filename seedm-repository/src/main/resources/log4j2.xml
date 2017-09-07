@@ -16,14 +16,14 @@
             <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [${PROJECT_NAME}] [%thread][%l] - %msg%n" />
         </Console>
         <!-- 程序员调试日志 -->
-        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${SERVER_NAME}_${STAT_NAMEe}" filePattern="${LOG_HOME}/${SERVER_NAME}.%d{yyyy-MM-dd-HH}.log">
+        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${PROJECT_NAME}/${SERVER_NAME}_${STAT_NAME}.log" filePattern="${LOG_HOME}/${SERVER_NAME}.%d{yyyy-MM-dd-HH}.log">
             <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [${PROJECT_NAME}] [%thread][%l] - %msg%n" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
             </Policies>
         </RollingRandomAccessFile>
         <!-- 产品数据分析日志 -->
-        <RollingRandomAccessFile name="ProductLog" fileName="${LOG_HOME}/${SERVER_NAME}" filePattern="${LOG_HOME}/${SERVER_NAME}_${STAT_NAME}.%d{yyyy-MM-dd-HH}.log">
+        <RollingRandomAccessFile name="ProductLog" fileName="${LOG_HOME}}/${PROJECT_NAME}/${SERVER_NAME}.log" filePattern="${LOG_HOME}/${SERVER_NAME}_${STAT_NAME}.%d{yyyy-MM-dd-HH}.log">
             <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%l] - %msg%n" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
@@ -34,7 +34,7 @@
         </RollingRandomAccessFile>
     </appenders>
     <loggers>
-        <!-- 3rdparty Loggers -->
+        <!-- SpringFramework -->
         <logger name="org.springframework.core" level="info">
         </logger>
         <logger name="org.springframework.beans" level="info">
