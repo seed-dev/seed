@@ -24,4 +24,14 @@ public enum RoleEnum {
     public String getSign() {
         return sign;
     }
+
+    public static RoleEnum getRoleEnum(String sign) {
+        RoleEnum [] roleEnums = RoleEnum.values();
+        for (RoleEnum roleEnum : roleEnums) {
+            if (roleEnum.getSign().equals(sign)) {
+                return roleEnum;
+            }
+        }
+        return null;
+    }
 }
