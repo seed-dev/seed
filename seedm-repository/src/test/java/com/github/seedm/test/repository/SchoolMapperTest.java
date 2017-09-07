@@ -5,6 +5,7 @@ import com.github.seedm.repository.mapper.seed.ISchoolMapper;
 import com.github.seedm.repository.vo.seed.SchoolVo;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,16 +28,19 @@ public class SchoolMapperTest {
 
     private static StringKit stringKit;
 
+    private String testId;
+
     @BeforeClass
     public static void beforeClass(){
         stringKit = new StringKit();
     }
 
-//    @Test
-    public void testInitData() {
+    @Before
+    public void before() {
+        this.testId = stringKit.uuid(true);
         List<SchoolVo> schools = new ArrayList<>();
         SchoolVo school1 = new SchoolVo();
-        school1.setId(stringKit.uuid(true));
+        school1.setId(this.testId);
         school1.setName("训练营01");
         school1.setAddress("火星星系路1号");
         school1.setIntro("这里是一所全能的足球实训学院，提供魔鬼式的全能训练01");
@@ -45,13 +49,14 @@ public class SchoolMapperTest {
         SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("训练营02");
-        school2.setAddress("火星星系路2号");
+        school2.setAddress("水星星系路2号");
         school2.setIntro("这里是一所全能的足球实训学院，提供魔鬼式的全能训练02");
-        school2.setContactNo("0224-56565656");
+        school2.setContactNo("0222-56565656");
 
         schools.add(school1);
         schools.add(school2);
         int count = this.schoolMapper.insertMulti(schools);
+        Assert.assertEquals(2, count);
     }
 
     @Test
@@ -83,9 +88,9 @@ public class SchoolMapperTest {
         SchoolVo school2 = new SchoolVo();
         school2.setId(stringKit.uuid(true));
         school2.setName("Xkilin修炼学院2");
-        school2.setAddress("火星星系路2号");
+        school2.setAddress("水星星系路2号");
         school2.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练2");
-        school2.setContactNo("0223-56565656");
+        school2.setContactNo("0222-56565656");
 
         schools.add(school1);
         schools.add(school2);
@@ -97,61 +102,55 @@ public class SchoolMapperTest {
 
     @Test
     public void testDeleteById() {
-        SchoolVo schoolVo = new SchoolVo();
-        String id = stringKit.uuid(true);
-        schoolVo.setId(id);
-        schoolVo.setName("Xkilin修炼学院x");
-        schoolVo.setAddress("火星星系路1号");
-        schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
-        schoolVo.setContactNo("0223-89898989");
-
-        this.schoolMapper.insert(schoolVo);
-        int count = this.schoolMapper.deleteById(id);
+        int count = this.schoolMapper.deleteById(this.testId);
         Assert.assertEquals(1, count);
     }
 
     @Test
     public void testUpdate() {
-        SchoolVo schoolVo = new SchoolVo();
-        String id = stringKit.uuid(true);
-        schoolVo.setId(id);
-        schoolVo.setName("Xkilin修炼学院");
-        schoolVo.setAddress("火星星系路1号");
-        schoolVo.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练");
-        schoolVo.setContactNo("0223-89898989");
-
-        this.schoolMapper.insert(schoolVo);
-        schoolVo = this.schoolMapper.selectById(id);
+        SchoolVo schoolVo = this.schoolMapper.selectById(this.testId);
         Assert.assertNotNull(schoolVo);
+        Assert.assertEquals("0223-89898989", schoolVo.getContactNo());
+
         schoolVo.setContactNo("0222-90909090");
-        schoolVo = this.schoolMapper.selectById(id);
+        int count = this.schoolMapper.update(schoolVo);
+        Assert.assertEquals(1, count);
+        schoolVo = this.schoolMapper.selectById(this.testId);
         Assert.assertEquals("0222-90909090", schoolVo.getContactNo());
     }
 
     @Test
+    public void testSelectById() {
+        SchoolVo schoolVo = this.schoolMapper.selectById(this.testId);
+        Assert.assertNotNull(schoolVo);
+    }
+
+    @Test
     public void testSelectAll() {
-        List<SchoolVo> schools = new ArrayList<>();
-        SchoolVo school1 = new SchoolVo();
-        school1.setId(stringKit.uuid(true));
-        school1.setName("Xkilin修炼学院1");
-        school1.setAddress("火星星系路1号");
-        school1.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练1");
-        school1.setContactNo("0223-89898989");
-
-        SchoolVo school2 = new SchoolVo();
-        school2.setId(stringKit.uuid(true));
-        school2.setName("Xkilin修炼学院2");
-        school2.setAddress("火星星系路2号");
-        school2.setIntro("这里是一所全能的研发语言实训学院，提供魔鬼式的编码训练2");
-        school2.setContactNo("0223-56565656");
-
-        schools.add(school1);
-        schools.add(school2);
-
-        this.schoolMapper.insertMulti(schools);
         int count = this.schoolMapper.selectAll().size();
 
         //断言新增数据在数据库中的条数
         Assert.assertEquals(2, count);
+    }
+
+    @Test
+    public void testSelectAllByCriteria() {
+        SchoolVo schoolVo = new SchoolVo();
+        schoolVo.setName("01");
+        List<SchoolVo> schools = this.schoolMapper.selectAllByCriteria(schoolVo);
+        Assert.assertEquals(1, schools.size());
+
+        schoolVo.setContactNo("0223");
+        schools = this.schoolMapper.selectAllByCriteria(schoolVo);
+        Assert.assertEquals(1, schools.size());
+
+        schoolVo.setContactNo("0222");
+        schools = this.schoolMapper.selectAllByCriteria(schoolVo);
+        Assert.assertEquals(0, schools.size());
+
+        schoolVo.setName("02");
+        schoolVo.setAddress("水星");
+        schools = this.schoolMapper.selectAllByCriteria(schoolVo);
+        Assert.assertEquals(1, schools.size());
     }
 }

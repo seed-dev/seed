@@ -8,23 +8,23 @@
         <result property="name" column="name"></result>
         <result property="intro" column="intro"></result>
         <result property="address" column="address"></result>
-        <result property="contactNumber" column="contact_number"></result>
+        <result property="contactNo" column="contact_no"></result>
         <result property="createTime" column="create_time"></result>
     </resultMap>
 
     <insert id="insert" parameterType="SchoolVo">
         INSERT INTO school
-          (id, name, intro, address, contact_number, create_time)
+          (id, name, intro, address, contact_no, create_time)
         VALUES
-          (#{id}, #{name}, #{intro}, #{address}, #{contactNumber}, #{createTime})
+          (#{id}, #{name}, #{intro}, #{address}, #{contactNo}, #{createTime})
     </insert>
 
     <insert id="insertMulti">
         INSERT INTO school
-        (id, name, intro, address, contact_number, create_time)
+        (id, name, intro, address, contact_no, create_time)
         VALUES
         <foreach item="school" collection="list" separator=",">
-          (#{school.id}, #{school.name}, #{school.intro}, #{school.address}, #{school.contactNumber}, #{school.createTime})
+          (#{school.id}, #{school.name}, #{school.intro}, #{school.address}, #{school.contactNo}, #{school.createTime})
         </foreach>
     </insert>
 
@@ -39,27 +39,39 @@
         UPDATE school
         <set>
             <if test="name != null">name = #{name},</if>
-            <if test="intro != null">name = #{intro},</if>
-            <if test="address != null">name = #{address},</if>
-            <if test="contactNumber != null">name = #{contactNumber}</if>
+            <if test="intro != null">intro = #{intro},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="address != null">contact_no = #{contactNo}</if>
         </set>
         WHERE
             id = #{id}
     </update>
-    
-    <select id="selectAll" resultType="SchoolVo">
-        SELECT
-            id, name, intro, address, contact_number, create_time
-        FROM
-            school
-    </select>
 
     <select id="selectById" resultMap="schoolMap">
         SELECT
-            id, name, intro, address, contact_number, create_time
+          id, name, intro, address, contact_no, create_time
         FROM
-            school
+          school
         WHERE
-            id = #{id}
+          id = #{id}
+    </select>
+    
+    <select id="selectAll" resultType="SchoolVo">
+        SELECT
+          id, name, intro, address, contact_no, create_time
+        FROM
+          school
+    </select>
+
+    <select id="selectAllByCriteria" resultMap="schoolMap">
+        SELECT
+          id, name, intro, address, contact_no, create_time
+        FROM
+          school
+        <where>
+            <if test="name != null">name LIKE CONCAT(CONCAT('%',#{name}),'%')</if>
+            <if test="address != null">AND address LIKE CONCAT(CONCAT('%',#{address}),'%')</if>
+            <if test="contactNo != null">AND contact_no LIKE CONCAT(CONCAT('%',#{contactNo}),'%')</if>
+        </where>
     </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
+import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.seedm.repository.vo.seed.SchoolVo;
 
 import java.util.List;
@@ -38,11 +39,6 @@ public interface ISchoolMapper {
      */
     public int update(SchoolVo schoolVo);
 
-    /**
-     * 查询全部学校信息
-     * @return 学校信息列表
-     */
-    public List<SchoolVo> selectAll();
 
     /**
      * 根据ID查询学校信息
@@ -51,5 +47,16 @@ public interface ISchoolMapper {
      */
     public SchoolVo selectById(String id);
 
+    /**
+     * 查询全部学校信息
+     * @return 学校信息列表
+     */
+    public List<SchoolVo> selectAll();
 
+    /**
+     * 查询学校信息，使用复合条件过滤
+     * @param schoolVo 学校信息
+     * @return 学校信息列表
+     */
+    public List<SchoolVo> selectAllByCriteria(SchoolVo schoolVo);
 }
