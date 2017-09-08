@@ -18,17 +18,17 @@
 
     <insert id="insert" parameterType="AccountVo">
         INSERT INTO account
-          (id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname, status)
+          (id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname)
         VALUES
-          (#{id}, #{name}, #{password}, #{birthday}, #{sex}, #{idcardNo}, #{mobile}, #{userId}, #{nickname}, #{status})
+          (#{id}, #{name}, #{password}, #{birthday}, #{sex}, #{idcardNo}, #{mobile}, #{userId}, #{nickname})
     </insert>
 
     <insert id="insertMulti">
         INSERT INTO account
-          (id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname, status)
+          (id, name, password, birthday, sex, idcard_no, mobile, user_id, nickname)
         VALUES
         <foreach item="account" collection="list" separator=",">
-            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.sex}, #{account.idcardNo}, #{account.mobile}, #{account.userId}, #{account.nickname}, #{account.status})
+            (#{account.id}, #{account.name}, #{account.password}, #{account.birthday}, #{account.sex}, #{account.idcardNo}, #{account.mobile}, #{account.userId}, #{account.nickname})
         </foreach>
 
     </insert>

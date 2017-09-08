@@ -95,7 +95,6 @@ public class AccountMapperTest {
         accountVo.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
         accountVo.setNickname("SuperAdmin");
         accountVo.setMobile(codecKit.encodeBase64("139000000000"));
-        accountVo.setStatus(StatusEnum.DISABLED);
         int result = this.accountMapper.insert(accountVo);
 
         Assert.assertEquals(1, result);
@@ -161,7 +160,6 @@ public class AccountMapperTest {
     public void testSelectById() throws ParseException {
         AccountVo account = this.accountMapper.selectById(this.testId);
         Assert.assertNotNull(account);
-        System.out.println(account.getSex().getSign() + " " + account.getStatus().getStatus());
     }
 
     @Test
