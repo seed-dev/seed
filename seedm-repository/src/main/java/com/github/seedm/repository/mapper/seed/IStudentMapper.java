@@ -1,6 +1,5 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.seedm.repository.vo.seed.StudentVo;
 
 import java.util.List;
@@ -40,22 +39,22 @@ public interface IStudentMapper {
     public int update(StudentVo studentVo);
 
     /**
+     * 根据ID查询学生信息
+     * @param id 学生信息ID
+     * @return 学生信息
+     */
+    public StudentVo selectById(String id);
+
+    /**
      * 查询全部学生信息
      * @return 系统全部学生信息列表
      */
     public List<StudentVo> selectAll();
 
     /**
-     * 查询学生信息，指定复合条件，仅查看当前激活学生
+     * 查询学生信息，使用复合条件过滤
      * @param studentVo 学生信息
-     * @return 学生信息
+     * @return 学生信息列表
      */
-    public AccountVo selectActiveStudent(StudentVo studentVo);
-
-//    /**
-//     * 查询学生信息，指定复合条件，不区分激活和非激活学生
-//     * @param studentVo 账号信息
-//     * @return 账号信息
-//     */
-//    public AccountVo selectStudent(StudentVo studentVo);
+    public List<StudentVo> selectAllByCriteria(StudentVo studentVo);
 }

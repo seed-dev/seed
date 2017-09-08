@@ -31,7 +31,7 @@ public class AccountVo {
 
     private String mobile;
 
-    private StatusEnum status = StatusEnum.ACTIVATE;
+    private StatusEnum status;
 
     private Timestamp createTime;
 

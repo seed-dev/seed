@@ -48,11 +48,10 @@ public class SemesterVo {
     public SemesterVo() {
     }
 
-    public SemesterVo(String id, String name, String schoolId, StatusEnum status, Date beginTime, Date endTime) {
+    public SemesterVo(String id, String name, String schoolId, Date beginTime, Date endTime) {
         this.id = id;
         this.name = name;
         this.schoolId = schoolId;
-        this.status = status;
         this.beginTime = beginTime;
         this.endTime = endTime;
     }

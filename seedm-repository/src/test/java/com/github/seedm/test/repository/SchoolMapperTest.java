@@ -1,7 +1,6 @@
 package com.github.seedm.test.repository;
 
 
-import com.github.seedm.entities.enumeration.StatusEnum;
 import com.github.seedm.repository.mapper.seed.ISchoolMapper;
 import com.github.seedm.repository.mapper.seed.ISemesterMapper;
 import com.github.seedm.repository.vo.seed.SchoolVo;
@@ -13,7 +12,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,8 +66,8 @@ public class SchoolMapperTest {
         int count = this.schoolMapper.insertMulti(schools);
         Assert.assertEquals(2, count);
 
-        SemesterVo semester1 = new SemesterVo(this.testSemesterId, "第一学期", this.testId, StatusEnum.DISABLED, new SimpleDateFormat("yyyy-MM-dd").parse("2017-02-10"), new SimpleDateFormat("yyyy-MM-dd").parse("2017-07-12"));
-        SemesterVo semester2 = new SemesterVo(stringKit.uuid(true), "第二学期", this.testId, StatusEnum.ACTIVATE, new SimpleDateFormat("yyyy-MM-dd").parse("2017-09-03"), new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-25"));
+        SemesterVo semester1 = new SemesterVo(this.testSemesterId, "第一学期", this.testId, new SimpleDateFormat("yyyy-MM-dd").parse("2017-02-10"), new SimpleDateFormat("yyyy-MM-dd").parse("2017-07-12"));
+        SemesterVo semester2 = new SemesterVo(stringKit.uuid(true), "第二学期", this.testId, new SimpleDateFormat("yyyy-MM-dd").parse("2017-09-03"), new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-25"));
 
         count = this.semesterMapper.insert(semester1);
         Assert.assertEquals(1, count);

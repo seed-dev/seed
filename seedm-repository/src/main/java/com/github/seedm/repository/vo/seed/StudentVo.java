@@ -23,7 +23,7 @@ public class StudentVo {
 
     private String idcardNo;
 
-    private StatusEnum status = StatusEnum.ACTIVATE;
+    private StatusEnum status;
 
     private Timestamp createTime;
 

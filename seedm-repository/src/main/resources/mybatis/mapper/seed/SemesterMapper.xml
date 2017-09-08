@@ -22,9 +22,9 @@
 
     <insert id="insert" parameterType="SemesterVo">
         INSERT INTO semester
-          (id, name, school_id, status, begin_time, end_time)
+          (id, name, school_id, begin_time, end_time)
         VALUES
-          (#{id}, #{name}, #{schoolId}, #{status}, #{beginTime}, #{endTime})
+          (#{id}, #{name}, #{schoolId}, #{beginTime}, #{endTime})
     </insert>
 
     <select id="selectById" resultMap="semesterMap">

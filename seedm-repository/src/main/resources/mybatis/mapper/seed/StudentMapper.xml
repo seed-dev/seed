@@ -10,32 +10,54 @@
         <result property="idcardNo" column="idcard_no"></result>
         <result property="status" column="status"></result>
         <result property="createTime" column="create_time"></result>
-        <collection property="schools" ofType="SchoolVo">
-            <id property="id" column="id"></id>
-            <result property="name" column="name"></result>
-            <result property="intro" column="intro"></result>
-            <result property="address" column="address"></result>
-            <result property="contactNumber" column="contact_number"></result>
-            <result property="createTime" column="create_time"></result>
-        </collection>
     </resultMap>
 
     <insert id="insert" parameterType="StudentVo">
         INSERT INTO student
-          (id, name, sex, birthday, idcard_no, status)
+          (id, name, sex, birthday, idcard_no)
         VALUES
-          (#{id}, #{name}, #{sex}, #{birthday}, #{idecardNo}, #{status})
+          (#{id}, #{name}, #{sex}, #{birthday}, #{idcardNo})
     </insert>
 
     <insert id="insertMulti">
         INSERT INTO student
-        (id, name, sex, birthday, idcard_no, status)
+          (id, name, sex, birthday, idcard_no)
         VALUES
         <foreach item="student" collection="list" separator=",">
-            (#{student.id}, #{student.name}, #{student.sex}, #{student.birthday}, #{student.idcardNo}, #{student.status})
+            (#{student.id}, #{student.name}, #{student.sex}, #{student.birthday}, #{student.idcardNo})
         </foreach>
 
     </insert>
+
+    <delete id="deleteById">
+        DELETE FROM
+          student
+        WHERE
+          id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE
+          student
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="birthday != null">birthday = #{birthday},</if>
+            <if test="idcardNo != null">idcard_no = #{idcardNo},</if>
+            <if test="status != null">status = #{status}</if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+
+    <select id="selectById" resultType="StudentVo">
+        SELECT
+          id, name, sex, birthday, idcard_no, status
+        FROM
+          student
+        WHERE
+          id = #{id}
+    </select>
     
     <select id="selectAll" resultType="StudentVo">
         SELECT
@@ -44,20 +66,16 @@
           student
     </select>
 
-    <!--<select id="selectActiveStudent" resultMap="studentMap">-->
-        <!--SELECT-->
-          <!--id, name, birthday, idcard_no, user_id, nickname, status, mobile, password, create_time-->
-        <!--FROM-->
-        <!--student-->
-        <!--WHERE-->
-          <!--status = 'ACTIVATE'-->
-            <!--<choose>-->
-                <!--<when test="userId != null">-->
-                    <!--AND user_id = #{userId}-->
-                <!--</when>-->
-                <!--<when test="mobile != null">-->
-                    <!--AND mobile = #{mobile}-->
-                <!--</when>-->
-            <!--</choose>-->
-    <!--</select>-->
+    <select id="selectAllByCriteria" resultMap="studentMap">
+        SELECT
+          id, name, sex, birthday, idcard_no, status
+        FROM
+          student
+        <where>
+            <if test="name != null">name LIKE CONCAT(CONCAT('%',#{name}),'%')</if>
+            <if test="sex != null">AND sex = #{sex}</if>
+            <if test="birthday != null">AND birthday = #{birthday}</if>
+            <if test="status != null">AND status = #{status}</if>
+        </where>
+    </select>
 </mapper>
