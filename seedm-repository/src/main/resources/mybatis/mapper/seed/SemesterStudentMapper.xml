@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.seedm.repository.mapper.seed.ISemesterStudentMapper">
+
+    <insert id="insert" parameterType="SemesterStudentVo">
+        INSERT INTO semester_student
+          (id, semester_id, student_id)
+        VALUES
+          (#{id}, #{semesterId}, #{studentId})
+    </insert>
+
+    <!--<select id="selectById" resultType="RoleVo">-->
+        <!--SELECT-->
+          <!--id, name, sign, description-->
+        <!--FROM-->
+          <!--role-->
+        <!--WHERE-->
+          <!--id = #{id}-->
+    <!--</select>-->
+</mapper>
