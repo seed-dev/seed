@@ -9,9 +9,11 @@ import com.github.seedm.repository.vo.seed.AccountVo;
 public interface IAccountService {
 
     /**
-     * 查询系统可用账号信息，可制定单条件或复合条件
-     * @param accountVo 查询条件
+     * 根据ID查询账号信息
+     * @param id 账号信息ID
      * @return 账号信息
      */
-    public AccountVo queryActive(AccountVo accountVo);
+    public AccountVo queryById(String id);
+
+    public int modify(AccountVo accountVo);
 }

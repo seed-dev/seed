@@ -46,18 +46,19 @@ public class AccountRealm extends AuthorizingRealm {
 
         AccountVo condition = new AccountVo();
         condition.setMobile(account);
-        AccountVo accountVo = this.accountService.queryActive(condition);
-
-        if (accountVo == null || !accountVo.getMobile().equals(account)) {
-            //账号不存在抛出异常
-            throw new UnknownAccountException();
-        }else if (!accountVo.getPassword().equals(password)) {
-            //错误的密码抛出异常
-            throw new IncorrectCredentialsException();
-        }else if (accountVo.getStatus().getStatus() == ACCOUNT_LOCKED) {
-            //账号锁定抛出异常
-            throw new LockedAccountException();
-        }
+        AccountVo accountVo = null;
+//        AccountVo accountVo = this.accountService.queryActive(condition);
+//
+//        if (accountVo == null || !accountVo.getMobile().equals(account)) {
+//            //账号不存在抛出异常
+//            throw new UnknownAccountException();
+//        }else if (!accountVo.getPassword().equals(password)) {
+//            //错误的密码抛出异常
+//            throw new IncorrectCredentialsException();
+//        }else if (accountVo.getStatus().getStatus() == ACCOUNT_LOCKED) {
+//            //账号锁定抛出异常
+//            throw new LockedAccountException();
+//        }
 
         AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(accountVo.getMobile(), accountVo.getPassword(), "accountRealm");
         return authenticationInfo;
