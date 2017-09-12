@@ -4,6 +4,7 @@ version '1.0.0'
 dependencies {
     compile project (":seedm-entities")
     compile (
+            "org.apache.tomcat:tomcat-jdbc:$tomcatJdbcVersion",
             "javax.transaction:jta:$jtaVersion",
             "org.aspectj:aspectjrt:$aspectjVersion",
             "org.aspectj:aspectjweaver:$aspectjVersion",
@@ -14,9 +15,11 @@ dependencies {
             "com.atomikos:transactions-jta:$atomikosVersion",
             "com.atomikos:transactions-jdbc:$atomikosVersion",
             "org.springframework:spring-jdbc:$springFrameworkVersion",
+            "org.springframework.data:spring-data-redis:$springDataRedisVersion",
             "org.mybatis:mybatis:$mybatisVersion",
             "org.mybatis:mybatis-spring:$mybatisSpringVersion",
-            "com.github.pagehelper:pagehelper:$pagehelperVersion"
+            "com.github.pagehelper:pagehelper:$pagehelperVersion",
+            "redis.clients:jedis:$jRedisVersion"
     )
     testCompile (
             "org.springframework:spring-context:$springFrameworkVersion",
