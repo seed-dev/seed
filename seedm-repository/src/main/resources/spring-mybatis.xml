@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!--Atomikos-->
+    <!-- Atomikos -->
     <bean id="parentAtomikosDs" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" abstract="true">
         <property name="xaDataSourceClassName" value="${maria.xaDataSourceClassName}" />
         <property name="poolSize" value="${atomikos.poolSize}" />
@@ -82,7 +82,7 @@
         <property name="basePackage" value="com.github.seedm.repository.mapper.seedsys" />
     </bean>
 
-     <!-- 事务这块用Spring管理Atomikos -->
+    <!-- 事务这块用Spring管理Atomikos -->
     <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">
         <property name="forceShutdown" value="true" />
     </bean>
@@ -90,7 +90,7 @@
         <property name="transactionTimeout" value="3000" />
     </bean>
 
-    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+    <bean id="jtaTransactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
         <property name="transactionManager" ref="atomikosTransactionManager" />
         <property name="userTransaction" ref="atomikosUserTransaction" />
         <!-- 必须设置，否则程序出现异常 JtaTransactionManager does not support custom isolation levels by default -->
@@ -98,5 +98,5 @@
     </bean>
 
     <!-- 注解实现事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="jtaTransactionManager" />
 </beans>

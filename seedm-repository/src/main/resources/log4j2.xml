@@ -51,7 +51,7 @@
         </logger>
         <!-- Root Logger -->
         <root level="DEBUG">
-            <!--<appender-ref ref="DevLog" />-->
+            <appender-ref ref="DevLog" />
             <appender-ref ref="ProductLog" />
             <appender-ref ref="Console" />
         </root>

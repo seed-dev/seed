@@ -4,6 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
+        <!-- 开启全局缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 设置查询关联对象进行非即时加载，以此提高性能 -->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <!-- 设置关联对象加载的形态，按需加载字段(加载字段由SQL指定)，以此提高性能 -->
+        <setting name="aggressiveLazyLoading" value="true"/>
         <!-- 数据库下划线命名自动映射实体类属性驼峰命名，默认值false -->
         <setting name="mapUnderscoreToCamelCase" value="true" />
         <setting name="logImpl" value="LOG4J2"/>

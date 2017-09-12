@@ -3,6 +3,7 @@ package com.github.seedm.repository.vo.seed;
 import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +12,9 @@ import java.util.List;
  * 账号表映射VO
  * @author Eugene
  */
-public class AccountVo {
+public class AccountVo implements Serializable {
 
+    private static final long serialVersionUID = -6697496774857187308L;
     private String id;
 
     private String name;
