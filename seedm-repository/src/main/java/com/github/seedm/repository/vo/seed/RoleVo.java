@@ -2,6 +2,8 @@ package com.github.seedm.repository.vo.seed;
 
 import com.github.seedm.entities.enumeration.RoleEnum;
 
+import java.util.List;
+
 /**
  * 角色表映射VO
  * @author Eugene
@@ -27,6 +29,11 @@ public class RoleVo {
      * 角色描述信息
      */
     private String description;
+
+    /**
+     * 权限列表
+     */
+    private List<PermissionVo> permissions;
 
     public RoleVo() {
     }
@@ -68,5 +75,13 @@ public class RoleVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<PermissionVo> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<PermissionVo> permissions) {
+        this.permissions = permissions;
     }
 }

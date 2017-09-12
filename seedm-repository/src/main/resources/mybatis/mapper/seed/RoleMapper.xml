@@ -3,6 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.seedm.repository.mapper.seed.IRoleMapper">
 
+    <resultMap id="roleWithPermissionMap" type="RoleVo">
+        <result property="id" column="r_id"></result>
+        <result property="name" column="r_name"></result>
+        <result property="sign" column="r_sign"></result>
+        <result property="description" column="description"></result>
+        <association property="permissions" resultMap="com.github.seedm.repository.mapper.seed.IPermissionMapper.permissionWithRoleMap" />
+    </resultMap>
+
     <insert id="insert" parameterType="RoleVo">
         INSERT INTO role
           (id, name, sign, description)
@@ -26,5 +34,17 @@
           role
         WHERE
           id = #{id}
+    </select>
+
+    <select id="selectWithPermissionById" resultMap="roleWithPermissionMap">
+      SELECT
+          r.id r_id, r.name r_name, r.sign r_sign, r.description r_description,
+          p.id p_id, p.name p_name, p.sign p_sign, p.description p_description,
+        FROM
+          role r LEFT JOIN role_permission rp ON
+          r.id = rp.role_id LEFT JOIN permission p ON
+          rp.permission_id = p.id
+        WHERE
+          r.id = #{id}
     </select>
 </mapper>

@@ -30,4 +30,11 @@ public interface IRoleMapper {
      * @return 角色信息
      */
     public RoleVo selectById(String id);
+
+    /**
+     * 根据ID查询角色信息，包括角色所拥有的权限信息
+     * @param id 角色信息ID
+     * @return 角色信息列表
+     */
+    public List<RoleVo> selectWithPermissionById(String id);
 }

@@ -2,11 +2,16 @@ package com.github.seedm.test.repository;
 
 
 import com.github.seedm.entities.enumeration.RoleEnum;
+import com.github.seedm.repository.mapper.seed.IPermissionMapper;
 import com.github.seedm.repository.mapper.seed.IRoleMapper;
+import com.github.seedm.repository.mapper.seed.IRolePermissionMapper;
+import com.github.seedm.repository.vo.seed.PermissionVo;
+import com.github.seedm.repository.vo.seed.RolePermissionVo;
 import com.github.seedm.repository.vo.seed.RoleVo;
 import com.github.seedm.repository.vo.seed.SchoolVo;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,17 +32,60 @@ public class RoleMapperTest {
     @Autowired
     private IRoleMapper roleMapper;
 
+    @Autowired
+    private IPermissionMapper permissionMapper;
+
+    @Autowired
+    private IRolePermissionMapper rolePermissionMapper;
+
     private static StringKit stringKit;
+
+    private String teacherId;
 
     @BeforeClass
     public static void beforeClass(){
         stringKit = new StringKit();
     }
 
-    @Test
-//    @Rollback(false)
-    public void testInitData() {
+    @Before
+    public void before() {
+        //权限测试数据
+        List<PermissionVo> permissions = new ArrayList<>();
 
+        PermissionVo create = new PermissionVo();
+        create.setId(stringKit.uuid(true));
+        create.setName("创建账号");
+        create.setSign("user:create");
+        create.setDescription("这是Milan学院创建账号的权限");
+
+        PermissionVo delete = new PermissionVo();
+        delete.setId(stringKit.uuid(true));
+        delete.setName("删除账号");
+        delete.setSign("user:delete");
+        delete.setDescription("这是Milan学院删除账号的权限");
+
+        PermissionVo update = new PermissionVo();
+        update.setId(stringKit.uuid(true));
+        update.setName("更新账号");
+        update.setSign("user:update");
+        update.setDescription("这是Milan学院更新账号的权限");
+
+        PermissionVo view = new PermissionVo();
+        view.setId(stringKit.uuid(true));
+        view.setName("查看账号");
+        view.setSign("user:view");
+        view.setDescription("这是Milan学院查看账号的权限");
+
+        permissions.add(create);
+        permissions.add(delete);
+        permissions.add(update);
+        permissions.add(view);
+
+        int count = this.permissionMapper.insertMulti(permissions);
+        Assert.assertEquals(4, count);
+
+        //角色测试数据
+        this.teacherId = stringKit.uuid(true);
         List<RoleVo> roles = new ArrayList<>();
 
         RoleVo principal = new RoleVo();
@@ -47,7 +95,7 @@ public class RoleMapperTest {
         principal.setDescription("这是Milan学院的校长角色");
 
         RoleVo teacher = new RoleVo();
-        teacher.setId(stringKit.uuid(true));
+        teacher.setId(this.teacherId);
         teacher.setName("老师");
         teacher.setSign(RoleEnum.TEACHER);
         teacher.setDescription("这是Milan学院的老师角色");
@@ -76,7 +124,20 @@ public class RoleMapperTest {
         roles.add(guardian);
         roles.add(student);
 
-        this.roleMapper.insertMulti(roles);
+        count = this.roleMapper.insertMulti(roles);
+        Assert.assertEquals(5, count);
+
+        teacher.setPermissions(permissions);
+
+        List<RolePermissionVo> rolePermissions = new ArrayList<>();
+        //建立角色权限关系
+        for (PermissionVo permissionVo : teacher.getPermissions()) {
+            RolePermissionVo rolePermission = new RolePermissionVo(stringKit.uuid(true), this.teacherId, permissionVo.getId());
+            rolePermissions.add(rolePermission);
+        }
+
+        count = this.rolePermissionMapper.insertMulti(rolePermissions);
+        Assert.assertEquals(4, count);
     }
 
     @Test
@@ -93,7 +154,13 @@ public class RoleMapperTest {
 
     @Test
     public void testSelectById() {
-        RoleVo roleVo = this.roleMapper.selectById("076aeb9d097b4a6187f7497028dbaf83");
+        RoleVo roleVo = this.roleMapper.selectById(this.teacherId);
         Assert.assertNotNull(roleVo);
+    }
+
+    @Test
+    public void testSelectWithPermissionById() {
+        List<RoleVo> roles = this.roleMapper.selectWithPermissionById(this.teacherId);
+        Assert.assertNotNull(roles);
     }
 }
