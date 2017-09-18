@@ -1,5 +1,6 @@
 package com.github.seedm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
 import com.github.seedm.repository.vo.seed.AccountVo;
 import com.github.seedm.service.IAccountService;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 账号信息业务处理实现类
@@ -23,6 +26,12 @@ public class AccountService implements IAccountService {
     @Override
     public AccountVo queryById(String id) {
         return this.accountMapper.selectById(id);
+    }
+
+    @Override
+    public List<AccountVo> queryAll() {
+        PageHelper.startPage(1, 5);
+        return this.accountMapper.selectAll();
     }
 
     @Override

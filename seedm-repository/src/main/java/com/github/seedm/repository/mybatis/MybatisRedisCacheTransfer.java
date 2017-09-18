@@ -8,7 +8,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
  */
 public class MybatisRedisCacheTransfer {
 
-    @Autowired
+//    @Autowired
     public void setJedisConnectionFactory(JedisConnectionFactory jedisConnectionFactory) {
         MybatisRedisCache.setJedisConnectionFactory(jedisConnectionFactory);
     }
