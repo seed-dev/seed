@@ -3,8 +3,8 @@ package com.github.seedm.test.repository;
 
 import com.github.seedm.repository.mapper.seed.ISchoolMapper;
 import com.github.seedm.repository.mapper.seed.ISemesterMapper;
-import com.github.seedm.repository.vo.seed.SchoolVo;
-import com.github.seedm.repository.vo.seed.SemesterVo;
+import com.github.seedm.repository.entities.vo.seed.SchoolVo;
+import com.github.seedm.repository.entities.vo.seed.SemesterVo;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.vo.seed.RoleVo;
+import com.github.seedm.repository.entities.vo.seed.RoleVo;
 
 import java.util.List;
 

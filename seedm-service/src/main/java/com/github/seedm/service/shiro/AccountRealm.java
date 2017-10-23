@@ -1,10 +1,9 @@
 package com.github.seedm.service.shiro;
 
-import com.github.seedm.repository.vo.seed.AccountVo;
+import com.github.seedm.repository.entities.vo.seed.AccountVo;
 import com.github.seedm.service.IAccountService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
@@ -40,25 +39,22 @@ public class AccountRealm extends AuthorizingRealm {
         //账号已冻结
         final int ACCOUNT_LOCKED = 2;
         //获取账号
-        String account = token.getPrincipal().toString();
+        String mobile = token.getPrincipal().toString();
         //获取密码
         String password = new String((char[]) token.getCredentials());
 
-        AccountVo condition = new AccountVo();
-        condition.setMobile(account);
-        AccountVo accountVo = null;
-//        AccountVo accountVo = this.accountService.queryActive(condition);
-//
-//        if (accountVo == null || !accountVo.getMobile().equals(account)) {
-//            //账号不存在抛出异常
-//            throw new UnknownAccountException();
-//        }else if (!accountVo.getPassword().equals(password)) {
-//            //错误的密码抛出异常
-//            throw new IncorrectCredentialsException();
-//        }else if (accountVo.getStatus().getStatus() == ACCOUNT_LOCKED) {
-//            //账号锁定抛出异常
-//            throw new LockedAccountException();
-//        }
+        AccountVo accountVo = this.accountService.queryOneByMobile(mobile);
+
+        if (accountVo == null || !accountVo.getMobile().equals(mobile)) {
+            //账号不存在抛出异常
+            throw new UnknownAccountException();
+        }else if (!accountVo.getPassword().equals(password)) {
+            //错误的密码抛出异常
+            throw new IncorrectCredentialsException();
+        }else if (accountVo.getStatus().getStatus() == ACCOUNT_LOCKED) {
+            //账号锁定抛出异常
+            throw new LockedAccountException();
+        }
 
         AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(accountVo.getMobile(), accountVo.getPassword(), "accountRealm");
         return authenticationInfo;

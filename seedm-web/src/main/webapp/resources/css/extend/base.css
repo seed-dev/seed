@@ -1,0 +1,22 @@
+.header {
+    height:60px;
+    /*background:#B3DFDA;*/
+    padding:10px;
+}
+.nav {
+    width:300px;
+}
+.footer {
+    height:30px;
+    /*background:#B3DFDA;*/
+    padding:5px;
+}
+
+.theme {
+    background-color: #0E90D2 !important;
+    color: #FFFFFF !important;
+}
+
+.copyright {
+    font-size: 13px;
+}

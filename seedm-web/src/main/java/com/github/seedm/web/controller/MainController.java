@@ -33,4 +33,13 @@ public class MainController {
     public String index() {
         return "/main/index";
     }
+
+    /**
+     * 跳转到管理系统默认主页面
+     * @return 管理系统默认主页面
+     */
+    @RequestMapping(value = "/default")
+    public String defaultPage() {
+        return "/main/default";
+    }
 }

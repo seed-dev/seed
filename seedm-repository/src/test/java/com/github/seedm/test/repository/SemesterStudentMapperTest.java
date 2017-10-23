@@ -1,9 +1,7 @@
 package com.github.seedm.test.repository;
 
 import com.github.seedm.repository.mapper.seed.ISemesterStudentMapper;
-import com.github.seedm.repository.mapper.seed.IStudentSchoolMapper;
-import com.github.seedm.repository.vo.seed.SemesterStudentVo;
-import com.github.seedm.repository.vo.seed.StudentSchoolVo;
+import com.github.seedm.repository.entities.vo.seed.SemesterStudentVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;

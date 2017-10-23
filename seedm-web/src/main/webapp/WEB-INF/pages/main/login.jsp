@@ -1,54 +1,73 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="登录页面">
-  <meta name="keywords" content="login">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Amaze UI Examples</title>
   <!-- Set render engine for 360 browser -->
   <meta name="renderer" content="webkit">
   <!-- No Baidu Siteapp-->
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <link rel="stylesheet" href="${pagecontext.request.contextPath}/seedm/resources/css/extend/amazeui.min.css">
-  <link rel="stylesheet" href="${pagecontext.request.contextPath}/seedm/resources/css/login.css">
-  <script src="${pagecontext.request.contextPath}/seedm/resources/js/extend/vue.min.js"></script>
-  <script src="${pagecontext.request.contextPath}/seedm/resources/js/login.js"></script>
+
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/extend/amazeui.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
+  <!--[if (gte IE 9)|!(IE)]<>!-->
+  <script src="${pageContext.request.contextPath}/resources/js/extend/jquery-3.2.1.min.js"></script>
+  <!--[endif]!-->
+  <!--[if lte IE 8 ]>
+  <script src="${pageContext.request.contextPath}/resources/js/extend/jquery-1.12.4.min.js"></script>
+  <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/amazeui/amazeui.ie8polyfill.min.js"></script>
+  <![endif]-->
+  <script src="${pageContext.request.contextPath}/resources/js/amazeui/amazeui.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </head>
 <body>
-  <div class="header">
-    <div class="am-g">
-      <h1>Seed Manager</h1>
-      <p>Integrated Development Environment<br/>代码编辑，代码生成，界面设计，调试，编译</p>
-    </div>
-    <hr />
-  </div>
-  <div id="loginForm" class="am-g">
-    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-      <form id="login" action="${pageContext.request.contextPath}/login/submit" method="post" class="am-form" @submit.prevent="login">
-        <div class="am-input-group">
-          <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-          <input type="text" class="am-form-field" name="account" placeholder="手机号码/用户ID/邮箱" v-model="account" />
-        </div>
 
-        <div class="am-input-group">
-          <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-          <input type="text" class="am-form-field" name="password" placeholder="请输入密码" v-model="password" />
-        </div>
-
-        <label for="remember-me">
-          <input id="remember-me" name="rememberMe" type="checkbox">记住密码
-        </label>
-        <br />
-        <div class="am-cf">
-          <input type="submit" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fl">
-          <input type="submit" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fr">
-        </div>
-      </form>
-      <hr>
-      <p>© 2017 Eugene's Mars Group, Inc. Licensed under MIT license.</p>
-    </div>
+<header class="am-g">
+  <div class="am-u-md-4 am-u-lg-6 am-u-sm-centered">
+    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg" class="am-img-responsive" alt=""/>
   </div>
+</header>
+
+<hr />
+
+<div id="loginForm" class="am-g">
+  <div class="am-u-md-2 am-u-lg-4 am-u-sm-centered">
+    <form action="${pageContext.request.contextPath}/login/submit" method="post" class="am-form">
+      <div class="am-input-group am-input-group-primary am-margin-vertical-xs">
+        <span class="am-input-group-label"><i class="am-icon-user am-icon-fw am-primary"></i></span>
+        <input type="text" id="mobile" name="mobile" class="am-form-field" placeholder="手机" />
+      </div>
+
+      <div class="am-input-group am-input-group-primary am-margin-vertical-xs">
+        <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw am-primary"></i></span>
+        <input type="text" id="password" name="password" class="am-form-field" placeholder="密码">
+      </div>
+
+      <label for="remember-me">
+        <input id="remember-me" type="checkbox">
+        记住密码
+      </label>
+      <br />
+      <div class="am-cf">
+        <input type="submit" name="" value="登 录" id="loginBut" class="am-btn am-btn-primary am-btn-sm am-fr">
+        <input type="submit" name="" value="忘记密码 ^_^? " id="forgetPwd" class="am-btn am-btn-warning am-btn-sm am-fl">
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<footer class="am-g">
+  <div class="am-u-md-2 am-u-lg-4 am-u-sm-centered">
+    <p>© 2017 Xkylin Group, Inc. Licensed under MIT license.</p>
+  </div>
+</footer>
 </body>
 </html>

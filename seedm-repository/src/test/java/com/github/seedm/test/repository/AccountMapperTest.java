@@ -3,8 +3,9 @@ package com.github.seedm.test.repository;
 import com.github.pagehelper.PageHelper;
 import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
+import com.github.seedm.repository.entities.param.seed.AccountParam;
 import com.github.seedm.repository.mapper.seed.IAccountMapper;
-import com.github.seedm.repository.vo.seed.AccountVo;
+import com.github.seedm.repository.entities.vo.seed.AccountVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;
@@ -47,21 +48,21 @@ public class AccountMapperTest {
     @Before
     public void befor() throws ParseException {
         this.testId = stringKit.uuid(true);
-        List<AccountVo> accounts = new ArrayList<>();
-        AccountVo accountVo = new AccountVo();
-        accountVo.setId(testId);
-        accountVo.setName("测试用户");
-        accountVo.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
-        accountVo.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1989-02-18"));
-        accountVo.setSex(SexEnum.MALE);
-        accountVo.setIdcardNo(codecKit.encodeBase64("5100078888888890"));
-        accountVo.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
-        accountVo.setNickname("SuperAdmin");
-        accountVo.setMobile(codecKit.encodeBase64("139000000002"));
-        accounts.add(accountVo);
+        List<AccountParam> accounts = new ArrayList<>();
+        AccountParam account = new AccountParam();
+        account.setId(testId);
+        account.setName("测试用户");
+        account.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+        account.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1989-02-18"));
+        account.setSex(SexEnum.MALE);
+        account.setIdcardNo(codecKit.encodeBase64("5100078888888890"));
+        account.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        account.setNickname("SuperAdmin");
+        account.setMobile(codecKit.encodeBase64("139000000002"));
+        accounts.add(account);
 
         for (int i = 0; i < 30; i++) {
-            AccountVo temp = new AccountVo();
+            AccountParam temp = new AccountParam();
             temp.setId(stringKit.uuid(true));
             temp.setName("测试用户" + (i + 1));
             temp.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
@@ -83,26 +84,42 @@ public class AccountMapperTest {
         Assert.assertEquals(31, result);
     }
 
+//    @Test
+//    @Rollback(false)
+//    public void initAccount() throws ParseException {
+//        AccountParam account = new AccountParam();
+//        account.setId(stringKit.uuid(true));
+//        account.setName("陈志恒");
+//        account.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+//        account.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1984-03-23"));
+//        account.setSex(SexEnum.MALE);
+//        account.setIdcardNo(codecKit.encodeBase64("510112198403236016"));
+//        account.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+//        account.setNickname("Eugene");
+//        account.setMobile(codecKit.encodeBase64("18980840323"));
+//        this.accountMapper.insert(account);
+//    }
+
     @Test
     public void testInsert() throws ParseException {
-        AccountVo accountVo = new AccountVo();
-        accountVo.setId(stringKit.uuid(true));
-        accountVo.setName("超级管理员");
-        accountVo.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
-        accountVo.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1984-03-08"));
-        accountVo.setSex(SexEnum.FEMALE);
-        accountVo.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
-        accountVo.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
-        accountVo.setNickname("SuperAdmin");
-        accountVo.setMobile(codecKit.encodeBase64("139000000000"));
-        int result = this.accountMapper.insert(accountVo);
+        AccountParam account = new AccountParam();
+        account.setId(stringKit.uuid(true));
+        account.setName("超级管理员");
+        account.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
+        account.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1984-03-08"));
+        account.setSex(SexEnum.FEMALE);
+        account.setIdcardNo(codecKit.encodeBase64("5100078888888888"));
+        account.setUserId(stringKit.randomByType(6, StringKit.RANDOM_TYPE_NUMBER));
+        account.setNickname("SuperAdmin");
+        account.setMobile(codecKit.encodeBase64("139000000000"));
+        int result = this.accountMapper.insert(account);
 
         Assert.assertEquals(1, result);
     }
 
     @Test
     public void insertMulti() throws ParseException {
-        AccountVo superAdmin = new AccountVo();
+        AccountParam superAdmin = new AccountParam();
         superAdmin.setId(stringKit.uuid(true));
         superAdmin.setName("超级管理员");
         superAdmin.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
@@ -113,7 +130,7 @@ public class AccountMapperTest {
         superAdmin.setNickname("SuperAdmin");
         superAdmin.setMobile(codecKit.encodeBase64("139000000000"));
 
-        AccountVo admin = new AccountVo();
+        AccountParam admin = new AccountParam();
         admin.setId(stringKit.uuid(true));
         admin.setName("管理员");
         admin.setPassword(codecKit.hex("666666".getBytes(), CodecKit.ALGORITHMS_MD5));
@@ -124,7 +141,7 @@ public class AccountMapperTest {
         admin.setNickname("Admin");
         admin.setMobile(codecKit.encodeBase64("139000000001"));
 
-        List<AccountVo> accounts = new ArrayList<>();
+        List<AccountParam> accounts = new ArrayList<>();
         accounts.add(superAdmin);
         accounts.add(admin);
 
@@ -174,23 +191,23 @@ public class AccountMapperTest {
 
     @Test
     public void testSelectActive() {
-        AccountVo accountVo = new AccountVo();
-        accountVo.setName("测试");
-        List<AccountVo> accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        AccountParam account = new AccountParam();
+        account.setName("测试");
+        List<AccountVo> accounts = this.accountMapper.selectAllByCriteria(account);
         Assert.assertEquals(31, accounts.size());
 
-        accountVo.setStatus(StatusEnum.DISABLED);
-        accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        account.setStatus(StatusEnum.DISABLED);
+        accounts = this.accountMapper.selectAllByCriteria(account);
         Assert.assertEquals(0, accounts.size());
 
-        accountVo.setName(null);
-        accountVo.setMobile(codecKit.encodeBase64("139"));
-        accountVo.setStatus(StatusEnum.ACTIVATE);
-        accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        account.setName(null);
+        account.setMobile(codecKit.encodeBase64("139"));
+        account.setStatus(StatusEnum.ACTIVATE);
+        accounts = this.accountMapper.selectAllByCriteria(account);
         Assert.assertEquals(31, accounts.size());
 
-        accountVo.setSex(SexEnum.MALE);
-        accounts = this.accountMapper.selectAllByCriteria(accountVo);
+        account.setSex(SexEnum.MALE);
+        accounts = this.accountMapper.selectAllByCriteria(account);
         Assert.assertEquals(16, accounts.size());
 
     }

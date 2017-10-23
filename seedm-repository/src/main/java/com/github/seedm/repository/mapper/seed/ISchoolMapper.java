@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.vo.seed.SchoolVo;
+import com.github.seedm.repository.entities.vo.seed.SchoolVo;
 
 import java.util.List;
 

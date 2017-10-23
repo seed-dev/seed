@@ -29,18 +29,18 @@ public class LoginController {
 
     @RequestMapping(value = "/submit")
     public String submit(HttpServletRequest request) {
-        String account = request.getParameter("account");
+        String mobile = request.getParameter("mobile");
         String password = request.getParameter("password");
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(codecKit.encodeBase64(account), codecKit.hex(password, CodecKit.ALGORITHMS_MD5));
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(codecKit.encodeBase64(mobile), codecKit.hex(password, CodecKit.ALGORITHMS_MD5));
         try {
             subject.login(usernamePasswordToken);
-            return "redirect:/main/index";
+            return "redirect:/";
         } catch (UnknownAccountException e) {//错误的账号
             logger.error("用户登录账号错误", e);
         } catch (IncorrectCredentialsException e) {//错误的凭证
             logger.error("用户登录密码错误", e);
         }
-        return "/main/login";
+        return "redirect:/main/login";
     }
 }

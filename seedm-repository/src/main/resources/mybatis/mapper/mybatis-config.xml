@@ -5,7 +5,7 @@
 <configuration>
     <settings>
         <!-- 开启全局缓存 -->
-        <setting name="cacheEnabled" value="true"/>
+        <!--<setting name="cacheEnabled" value="true"/>-->
         <!-- 设置查询关联对象进行非即时加载，以此提高性能 -->
         <setting name="lazyLoadingEnabled" value="false"/>
         <!-- 设置关联对象加载的形态，按需加载字段(加载字段由SQL指定)，以此提高性能 -->
@@ -16,8 +16,8 @@
     </settings>
 
     <typeAliases>
-        <package name="com.github.seedm.repository.vo.seed" />
-        <package name="com.github.seedm.repository.vo.seedsys" />
+        <package name="com.github.seedm.repository.entities.vo.seed" />
+        <package name="com.github.seedm.repository.entities.vo.seedsys" />
     </typeAliases>
 
     <typeHandlers>

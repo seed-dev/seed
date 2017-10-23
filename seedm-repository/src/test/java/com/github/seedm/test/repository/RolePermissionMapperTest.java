@@ -1,9 +1,7 @@
 package com.github.seedm.test.repository;
 
 import com.github.seedm.repository.mapper.seed.IRolePermissionMapper;
-import com.github.seedm.repository.mapper.seed.ISchoolRoleMapper;
-import com.github.seedm.repository.vo.seed.RolePermissionVo;
-import com.github.seedm.repository.vo.seed.SchoolRoleVo;
+import com.github.seedm.repository.entities.vo.seed.RolePermissionVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;

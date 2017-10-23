@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.vo.seed.SemesterVo;
+import com.github.seedm.repository.entities.vo.seed.SemesterVo;
 
 /**
  * 学期表映射操作

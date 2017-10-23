@@ -1,6 +1,7 @@
 package com.github.seedm.service;
 
-import com.github.seedm.repository.vo.seed.AccountVo;
+import com.github.seedm.repository.entities.param.seed.AccountParam;
+import com.github.seedm.repository.entities.vo.seed.AccountVo;
 
 import java.util.List;
 
@@ -10,6 +11,12 @@ import java.util.List;
  */
 public interface IAccountService {
 
+    public int save(AccountParam account);
+
+    public int deleteById(String id);
+
+    public int modify(AccountVo accountVo);
+
     /**
      * 根据ID查询账号信息
      * @param id 账号信息ID
@@ -17,7 +24,12 @@ public interface IAccountService {
      */
     public AccountVo queryById(String id);
 
-    public List<AccountVo> queryAll();
+    /**
+     * 根据手机查询唯一的账号信息
+     * @param mobile 手机
+     * @return 账号信息
+     */
+    public AccountVo queryOneByMobile(String mobile);
 
-    public int modify(AccountVo accountVo);
+    public List<AccountVo> queryAll();
 }

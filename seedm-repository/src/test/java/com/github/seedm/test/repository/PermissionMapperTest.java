@@ -2,7 +2,7 @@ package com.github.seedm.test.repository;
 
 
 import com.github.seedm.repository.mapper.seed.IPermissionMapper;
-import com.github.seedm.repository.vo.seed.PermissionVo;
+import com.github.seedm.repository.entities.vo.seed.PermissionVo;
 import com.github.toolkit.core.StringKit;
 import org.junit.BeforeClass;
 import org.junit.Test;

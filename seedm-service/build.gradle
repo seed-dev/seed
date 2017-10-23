@@ -10,4 +10,8 @@ dependencies {
         "org.springframework:spring-context-support:$springFrameworkVersion",
         "org.apache.shiro:shiro-core:$shiroVersion"
     )
+    testCompile(
+            "commons-codec:commons-codec:$commonsCodecVersion",
+            "org.apache.commons:commons-lang3:$commonsLang3Version"
+    )
 }
