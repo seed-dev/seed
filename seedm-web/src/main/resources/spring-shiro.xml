@@ -63,10 +63,10 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<!-- 必须指定安全管理器 -->
 		<property name="securityManager" ref="securityManager"/>
-		<!-- 身份认证失败: 跳转至登陆页面 -->
+		<!-- 登录页面地址 -->
 		<property name="loginUrl" value="/main/login"/>
-		<!-- 权限认证失败: 未认证跳转至登陆页面 -->
-		<property name="unauthorizedUrl" value="/main/login"/>
+		<!-- 通过验证后的访问地址 -->
+		<property name="successUrl" value="/"/>
 		<!--
 			Shiro连接约束配置,即过滤链的定义
 			authc:必须登陆才能访问
