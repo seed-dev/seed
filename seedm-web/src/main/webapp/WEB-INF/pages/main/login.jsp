@@ -15,15 +15,10 @@
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/extend/amazeui.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
-  <!--[if (gte IE 9)|!(IE)]<>!-->
-  <script src="${pageContext.request.contextPath}/resources/js/extend/jquery-3.2.1.min.js"></script>
-  <!--[endif]!-->
-  <!--[if lte IE 8 ]>
   <script src="${pageContext.request.contextPath}/resources/js/extend/jquery-1.12.4.min.js"></script>
   <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/amazeui/amazeui.ie8polyfill.min.js"></script>
-  <![endif]-->
-  <script src="${pageContext.request.contextPath}/resources/js/amazeui/amazeui.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/extend/amazeui/amazeui.ie8polyfill.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/extend/amazeui/amazeui.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </head>
 <body>

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/extend/easyui/metro/easyui.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/extend/amazeui.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/extend/base.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/extend/home.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css" />
     <script src="${pageContext.request.contextPath}/resources/js/extend/jquery-1.12.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/extend/jquery.easyui.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/extend/amazeui/amazeui.min.js"></script>
@@ -50,7 +50,7 @@
                             <a href="#" data-bind="click: forward.bind($data, 'http://www.csdn.net')"><i class="am-icon-home am-icon-fw"></i>学校管理</a>
                         </li>
                         <li>
-                            <a href="#" data-bind="click: forward.bind($data, '../school/schoolm.html')"><i class="am-icon-home am-icon-fw"></i>学期管理</a>
+                            <a href="#" data-bind="click: forward.bind($data, 'main/school')"><i class="am-icon-home am-icon-fw"></i>学期管理</a>
                         </li>
                         <li>
                             <a href="#" data-bind="click: forward.bind($data, '../school/schoolm.html')"><i class="am-icon-home am-icon-fw"></i>教师管理</a>
@@ -68,7 +68,7 @@
             </dt>
             <dd class="am-accordion-bd am-collapse">
                 <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-                <div class="am-accordion-content">
+                <div class="am-accordion-content am-padding-0">
                     <ul class="am-list am-list-border am-margin-0">
                         <li>
                             <a href="#" data-bind="click: forward.bind($data, 'http://www.csdn.net')"><i class="am-icon-home am-icon-fw"></i>新增设备</a>
@@ -89,7 +89,7 @@
             </dt>
             <dd class="am-accordion-bd am-collapse">
                 <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-                <div class="am-accordion-content">
+                <div class="am-accordion-content am-padding-0">
                     <ul class="am-list am-list-border am-margin-0">
                         <li>
                             <a href="#" data-bind="click: forward.bind($data, 'http://www.csdn.net')"><i class="am-icon-home am-icon-fw"></i>数据字典维护</a>

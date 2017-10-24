@@ -17,7 +17,7 @@ public class MainController {
 
     /**
      * 跳转到登录页面
-     * @return 登录页面地址
+     * @return 登录页面视图地址
      */
     @RequestMapping(value = "/login")
     public String login() {
@@ -27,7 +27,7 @@ public class MainController {
 
     /**
      * 跳转到管理系统主页面
-     * @return 管理系统主页面
+     * @return 管理系统主页面视图地址
      */
     @RequestMapping(value = "/index")
     public String index() {
@@ -36,10 +36,19 @@ public class MainController {
 
     /**
      * 跳转到管理系统默认主页面
-     * @return 管理系统默认主页面
+     * @return 管理系统默认主页面视图地址
      */
     @RequestMapping(value = "/default")
     public String defaultPage() {
         return "/main/default";
+    }
+
+    /**
+     * 跳转到学校管理页面
+     * @return 学校管理页面视图地址
+     */
+    @RequestMapping(value = "/school")
+    public String school() {
+        return "/organm/schoolm";
     }
 }
