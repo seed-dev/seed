@@ -41,9 +41,18 @@
 	<!--</mvc:interceptors>-->
 
 	<!--视图-->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/"/>
-		<property name="suffix" value=".jsp"/>
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	<!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+		<!--<property name="prefix" value="/WEB-INF/pages/"/>-->
+		<!--<property name="suffix" value=".jsp"/>-->
+		<!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+	<!--</bean>-->
+	<bean id="viewResolver" class="jetbrick.template.web.springmvc.JetTemplateViewResolver">
+		<property name="order" value="1" />
+		<property name="contentType" value="text/html; charset=utf-8" />
+		<property name="prefix" value="/WEB-INF/template/" />
+		<property name="suffix" value=".jetx" />
+
+		<!-- 指定配置文件 -->
+		<property name="configLocation" value="/WEB-INF/jetbrick-template.properties" />
 	</bean>
 </beans>
