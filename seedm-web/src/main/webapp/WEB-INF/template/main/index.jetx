@@ -16,7 +16,7 @@
     <script src="${WEBROOT}/resources/js/extend/jquery.easyui.min.js"></script>
     <script src="${WEBROOT}/resources/js/extend/amazeui/amazeui.min.js"></script>
     <script src="${WEBROOT}/resources/js/extend/knockout-3.4.2.js"></script>
-    <script src="${WEBROOT}/resources/js/home.js"></script>
+    <script src="${WEBROOT}/resources/js/index.js"></script>
 </head>
 <body class="easyui-layout">
 <!-- 页头 -->
