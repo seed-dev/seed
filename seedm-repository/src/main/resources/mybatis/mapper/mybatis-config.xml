@@ -16,8 +16,7 @@
     </settings>
 
     <typeAliases>
-        <package name="com.github.seedm.repository.entities.vo.seed" />
-        <package name="com.github.seedm.repository.entities.vo.seedsys" />
+        <package name="com.github.seedm.repository.entities.vo" />
     </typeAliases>
 
     <typeHandlers>

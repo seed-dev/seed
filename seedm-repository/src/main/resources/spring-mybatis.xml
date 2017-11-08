@@ -38,18 +38,6 @@
         </property>
     </bean>
 
-    <bean id="seedSysAtomikosDs" parent="parentAtomikosDs">
-        <property name="uniqueResourceName" value="jdbc/seedSysDs" />
-        <property name="xaProperties">
-            <props>
-                <prop key="URL">${seedsys.url}</prop>
-                <prop key="user">${seedsys.username}</prop>
-                <prop key="password">${seedsys.password}</prop>
-            </props>
-        </property>
-    </bean>
-
-
     <!-- MyBatis配置 -->
     <!-- 配置sqlSessionFactory -->
     <bean id="seedSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -61,25 +49,11 @@
         <property name="mapperLocations" value="classpath:mybatis/mapper/seed/*.xml" />
     </bean>
 
-    <bean id="seedSysSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="seedSysAtomikosDs" />
-        <!-- 默认根目录为classpath -->
-        <!-- 扫描Mybatis主配置文件 -->
-        <property name="configLocation" value="classpath:mybatis/mapper/mybatis-config.xml" />
-        <!-- 扫描Mapper置文件 -->
-        <property name="mapperLocations" value="classpath:mybatis/mapper/seedsys/*.xml" />
-    </bean>
-
     <!-- 配置MyBatis映射接口扫描器 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="seedSqlSessionFactory" />
         <!-- 扫描Mapper接口定义 -->
-        <property name="basePackage" value="com.github.seedm.repository.mapper.seed" />
-    </bean>
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="seedSysSqlSessionFactory" />
-        <!-- 扫描Mapper接口定义 -->
-        <property name="basePackage" value="com.github.seedm.repository.mapper.seedsys" />
+        <property name="basePackage" value="com.github.seedm.repository.mapper" />
     </bean>
 
     <!-- 事务这块用Spring管理Atomikos -->
