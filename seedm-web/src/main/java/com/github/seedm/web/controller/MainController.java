@@ -51,4 +51,22 @@ public class MainController {
     public String school() {
         return "/organm/schoolm";
     }
+
+    /**
+     * 跳转到系统用户管理页面
+     * @return 系统用户管理页面视图地址
+     */
+    @RequestMapping(value = "/sys/account")
+    public String sysAccount() {
+        return "/account/sysaccountm";
+    }
+
+    /**
+     * 跳转到系统学校管理页面
+     * @return 系统学校管理页面视图地址
+     */
+    @RequestMapping(value = "/sys/school")
+    public String sysSchool() {
+        return "/school/sysschoolm";
+    }
 }
