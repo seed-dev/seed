@@ -2,7 +2,7 @@ package com.github.seedm.test.repository;
 
 import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.repository.mapper.seed.IStudentMapper;
-import com.github.seedm.repository.entities.vo.seed.StudentVo;
+import com.github.seedm.repository.entities.vo.StudentVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
 import org.junit.Assert;

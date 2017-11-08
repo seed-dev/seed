@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.entities.vo.seed.SchoolRoleVo;
+import com.github.seedm.repository.entities.vo.SchoolRoleVo;
 
 /**
  * 学校角色关系表映射操作

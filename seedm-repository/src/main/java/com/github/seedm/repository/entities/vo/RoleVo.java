@@ -1,4 +1,4 @@
-package com.github.seedm.repository.entities.vo.seed;
+package com.github.seedm.repository.entities.vo;
 
 import com.github.seedm.entities.enumeration.RoleEnum;
 

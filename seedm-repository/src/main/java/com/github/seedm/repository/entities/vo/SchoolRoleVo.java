@@ -1,4 +1,4 @@
-package com.github.seedm.repository.entities.vo.seed;
+package com.github.seedm.repository.entities.vo;
 
 /**
  * 学校角色关系表映射VO

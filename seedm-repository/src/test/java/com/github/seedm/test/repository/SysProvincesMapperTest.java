@@ -2,7 +2,7 @@ package com.github.seedm.test.repository;
 
 
 import com.github.seedm.repository.mapper.seedsys.ISysProvincesMapper;
-import com.github.seedm.repository.entities.vo.seedsys.SysProvincesVO;
+import com.github.seedm.repository.entities.vo.SysProvincesVO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

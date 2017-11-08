@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seed;
 
-import com.github.seedm.repository.entities.vo.seed.RolePermissionVo;
+import com.github.seedm.repository.entities.vo.RolePermissionVo;
 
 import java.util.List;
 

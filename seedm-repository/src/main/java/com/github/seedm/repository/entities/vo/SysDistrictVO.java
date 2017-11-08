@@ -1,4 +1,4 @@
-package com.github.seedm.repository.entities.vo.seedsys;
+package com.github.seedm.repository.entities.vo;
 
 /**
  * 行政区表映射VO

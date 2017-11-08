@@ -1,6 +1,6 @@
 package com.github.seedm.service.shiro;
 
-import com.github.seedm.repository.entities.vo.seed.AccountVo;
+import com.github.seedm.repository.entities.vo.AccountVo;
 import com.github.seedm.service.IAccountService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

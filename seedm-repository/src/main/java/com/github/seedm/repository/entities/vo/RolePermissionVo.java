@@ -1,4 +1,4 @@
-package com.github.seedm.repository.entities.vo.seed;
+package com.github.seedm.repository.entities.vo;
 
 /**
  * 角色权限关系表映射VO

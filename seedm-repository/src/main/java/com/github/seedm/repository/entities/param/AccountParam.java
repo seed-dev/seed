@@ -1,18 +1,16 @@
-package com.github.seedm.repository.entities.vo.seed;
+package com.github.seedm.repository.entities.param;
 
 import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 /**
- * 账号表映射VO
+ * 账号信息
  * @author Eugene
  */
-public class AccountVo implements Serializable {
+public class AccountParam implements Serializable {
 
     private static final long serialVersionUID = -6697496774857187308L;
     private String id;
@@ -35,19 +33,17 @@ public class AccountVo implements Serializable {
 
     private StatusEnum status;
 
-    private Timestamp createTime;
+    private Date createTime;
 
-    private List<SchoolVo> schools;
-
-    public AccountVo() {
+    public AccountParam() {
     }
 
-    public AccountVo(String password, String mobile) {
+    public AccountParam(String password, String mobile) {
         this.password = password;
         this.mobile = mobile;
     }
 
-    public AccountVo(String id, String name, String password, Date birthday, SexEnum sex, String idcardNo, String userId, String nickname, String mobile) {
+    public AccountParam(String id, String name, String password, Date birthday, SexEnum sex, String idcardNo, String userId, String nickname, String mobile) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -139,19 +135,11 @@ public class AccountVo implements Serializable {
         this.status = status;
     }
 
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public List<SchoolVo> getSchools() {
-        return schools;
-    }
-
-    public void setSchools(List<SchoolVo> schools) {
-        this.schools = schools;
     }
 }

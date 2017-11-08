@@ -1,8 +1,7 @@
-package com.github.seedm.repository.entities.param.seed;
+package com.github.seedm.repository.entities.vo;
 
 import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
-import com.github.seedm.repository.entities.vo.seed.SchoolVo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -10,10 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 账号信息
+ * 账号表映射VO
  * @author Eugene
  */
-public class AccountParam implements Serializable {
+public class AccountVo implements Serializable {
 
     private static final long serialVersionUID = -6697496774857187308L;
     private String id;
@@ -36,17 +35,19 @@ public class AccountParam implements Serializable {
 
     private StatusEnum status;
 
-    private Date createTime;
+    private Timestamp createTime;
 
-    public AccountParam() {
+    private List<SchoolVo> schools;
+
+    public AccountVo() {
     }
 
-    public AccountParam(String password, String mobile) {
+    public AccountVo(String password, String mobile) {
         this.password = password;
         this.mobile = mobile;
     }
 
-    public AccountParam(String id, String name, String password, Date birthday, SexEnum sex, String idcardNo, String userId, String nickname, String mobile) {
+    public AccountVo(String id, String name, String password, Date birthday, SexEnum sex, String idcardNo, String userId, String nickname, String mobile) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -138,11 +139,19 @@ public class AccountParam implements Serializable {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    public List<SchoolVo> getSchools() {
+        return schools;
+    }
+
+    public void setSchools(List<SchoolVo> schools) {
+        this.schools = schools;
     }
 }

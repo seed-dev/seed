@@ -1,6 +1,6 @@
 package com.github.seedm.repository.mapper.seedsys;
 
-import com.github.seedm.repository.entities.vo.seedsys.SysDistrictVO;
+import com.github.seedm.repository.entities.vo.SysDistrictVO;
 
 import java.util.List;
 

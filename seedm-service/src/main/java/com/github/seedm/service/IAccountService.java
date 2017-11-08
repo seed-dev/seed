@@ -1,7 +1,7 @@
 package com.github.seedm.service;
 
-import com.github.seedm.repository.entities.param.seed.AccountParam;
-import com.github.seedm.repository.entities.vo.seed.AccountVo;
+import com.github.seedm.repository.entities.param.AccountParam;
+import com.github.seedm.repository.entities.vo.AccountVo;
 
 import java.util.List;
 
