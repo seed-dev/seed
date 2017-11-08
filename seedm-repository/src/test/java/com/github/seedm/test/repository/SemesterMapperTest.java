@@ -1,8 +1,8 @@
 package com.github.seedm.test.repository;
 
 
-import com.github.seedm.repository.mapper.seed.ISchoolMapper;
-import com.github.seedm.repository.mapper.seed.ISemesterMapper;
+import com.github.seedm.repository.mapper.ISchoolMapper;
+import com.github.seedm.repository.mapper.ISemesterMapper;
 import com.github.seedm.repository.entities.vo.SchoolVo;
 import com.github.seedm.repository.entities.vo.SemesterVo;
 import com.github.toolkit.core.StringKit;

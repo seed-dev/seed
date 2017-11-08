@@ -2,7 +2,7 @@ package com.github.seedm.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.seedm.repository.entities.param.AccountParam;
-import com.github.seedm.repository.mapper.seed.IAccountMapper;
+import com.github.seedm.repository.mapper.IAccountMapper;
 import com.github.seedm.repository.entities.vo.AccountVo;
 import com.github.seedm.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.seedm.repository.mapper.seed.IPermissionMapper">
+<mapper namespace="com.github.seedm.repository.mapper.IPermissionMapper">
 
     <resultMap id="permissionMap" type="PermissionVo">
         <result property="id" column="id"></result>

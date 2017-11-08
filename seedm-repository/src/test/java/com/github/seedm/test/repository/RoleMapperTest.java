@@ -2,9 +2,9 @@ package com.github.seedm.test.repository;
 
 
 import com.github.seedm.entities.enumeration.RoleEnum;
-import com.github.seedm.repository.mapper.seed.IPermissionMapper;
-import com.github.seedm.repository.mapper.seed.IRoleMapper;
-import com.github.seedm.repository.mapper.seed.IRolePermissionMapper;
+import com.github.seedm.repository.mapper.IPermissionMapper;
+import com.github.seedm.repository.mapper.IRoleMapper;
+import com.github.seedm.repository.mapper.IRolePermissionMapper;
 import com.github.seedm.repository.entities.vo.PermissionVo;
 import com.github.seedm.repository.entities.vo.RolePermissionVo;
 import com.github.seedm.repository.entities.vo.RoleVo;

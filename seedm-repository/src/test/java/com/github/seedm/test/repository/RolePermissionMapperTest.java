@@ -1,6 +1,6 @@
 package com.github.seedm.test.repository;
 
-import com.github.seedm.repository.mapper.seed.IRolePermissionMapper;
+import com.github.seedm.repository.mapper.IRolePermissionMapper;
 import com.github.seedm.repository.entities.vo.RolePermissionVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;

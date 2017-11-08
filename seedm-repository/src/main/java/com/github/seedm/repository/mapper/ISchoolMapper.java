@@ -1,4 +1,4 @@
-package com.github.seedm.repository.mapper.seed;
+package com.github.seedm.repository.mapper;
 
 import com.github.seedm.repository.entities.vo.SchoolVo;
 

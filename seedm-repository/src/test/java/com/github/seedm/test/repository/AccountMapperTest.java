@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.seedm.entities.enumeration.SexEnum;
 import com.github.seedm.entities.enumeration.StatusEnum;
 import com.github.seedm.repository.entities.param.AccountParam;
-import com.github.seedm.repository.mapper.seed.IAccountMapper;
+import com.github.seedm.repository.mapper.IAccountMapper;
 import com.github.seedm.repository.entities.vo.AccountVo;
 import com.github.toolkit.core.CodecKit;
 import com.github.toolkit.core.StringKit;
