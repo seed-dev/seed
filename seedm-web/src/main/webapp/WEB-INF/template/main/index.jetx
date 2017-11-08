@@ -25,8 +25,6 @@
         <strong>AC Milan</strong> <small>后台管理</small>
     </div>
 
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li><a href="javascript:;"><span class="am-icon-users"></span> 超级管理员 </a></li>
@@ -95,6 +93,12 @@
                         </li>
                         <li>
                             <a href="#" data-bind="click: forward.bind($data, '../school/schoolm.html')"><i class="am-icon-home am-icon-fw"></i>系统资源维护</a>
+                        </li>
+                        <li>
+                            <a href="#" data-bind="click: forward.bind($data, 'main/sys/account')"><i class="am-icon-home am-icon-fw"></i>系统用户维护</a>
+                        </li>
+                        <li>
+                            <a href="#" data-bind="click: forward.bind($data, 'main/sys/school')"><i class="am-icon-home am-icon-fw"></i>系统学校维护</a>
                         </li>
                     </ul>
                 </div>

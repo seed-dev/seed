@@ -16,7 +16,7 @@ $(document).ready(function () {
     };
 
     var ContentViewModel = {
-        url: ko.observable('http://www.163.com')
+        url: ko.observable('main/default')
     };
 
 
